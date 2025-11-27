@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-12-14">
+
+<title>CPS Data Exercise</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/quarto.js"></script>
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/popper.min.js"></script>
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DOE_JOHN_382_01_CPSPROJECT_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DOE_JOHN_382_01_CPSPROJECT_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DOE_JOHN_382_01_CPSPROJECT_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DOE_JOHN_382_01_CPSPROJECT_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#setting-up-the-environment" id="toc-setting-up-the-environment" class="nav-link active" data-scroll-target="#setting-up-the-environment">Setting Up the Environment</a></li>
+  <li><a href="#part-3---importing-data" id="toc-part-3---importing-data" class="nav-link" data-scroll-target="#part-3---importing-data">Part 3 - Importing Data</a></li>
+  <li><a href="#part-4---sex-variable" id="toc-part-4---sex-variable" class="nav-link" data-scroll-target="#part-4---sex-variable">Part 4 - SEX Variable</a></li>
+  <li><a href="#part-5---race-variable" id="toc-part-5---race-variable" class="nav-link" data-scroll-target="#part-5---race-variable">Part 5 - RACE Variable</a></li>
+  <li><a href="#part-6---marst-variable" id="toc-part-6---marst-variable" class="nav-link" data-scroll-target="#part-6---marst-variable">Part 6 - MARST Variable</a></li>
+  <li><a href="#part-7---educ99-variable" id="toc-part-7---educ99-variable" class="nav-link" data-scroll-target="#part-7---educ99-variable">Part 7 - EDUC99 Variable</a></li>
+  <li><a href="#part-8---incwage-variable" id="toc-part-8---incwage-variable" class="nav-link" data-scroll-target="#part-8---incwage-variable">Part 8 - INCWAGE Variable</a></li>
+  <li><a href="#part-9---region-variable" id="toc-part-9---region-variable" class="nav-link" data-scroll-target="#part-9---region-variable">Part 9 - REGION Variable</a></li>
+  <li><a href="#part-10---drop-old-variables" id="toc-part-10---drop-old-variables" class="nav-link" data-scroll-target="#part-10---drop-old-variables">Part 10 - DROP OLD VARIABLES</a></li>
+  <li><a href="#part-11---descriptive-statistics" id="toc-part-11---descriptive-statistics" class="nav-link" data-scroll-target="#part-11---descriptive-statistics">Part 11 - DESCRIPTIVE STATISTICS</a></li>
+  <li><a href="#part-12---incwage-fractions" id="toc-part-12---incwage-fractions" class="nav-link" data-scroll-target="#part-12---incwage-fractions">Part 12 - INCWAGE Fractions</a></li>
+  <li><a href="#part-13---model-1" id="toc-part-13---model-1" class="nav-link" data-scroll-target="#part-13---model-1">Part 13 - MODEL 1</a></li>
+  <li><a href="#part-14---model-2" id="toc-part-14---model-2" class="nav-link" data-scroll-target="#part-14---model-2">Part 14 - MODEL 2</a></li>
+  <li><a href="#part-15---model-3" id="toc-part-15---model-3" class="nav-link" data-scroll-target="#part-15---model-3">Part 15 - MODEL 3</a></li>
+  <li><a href="#part-16---explanation-for-excluding-the-first-region" id="toc-part-16---explanation-for-excluding-the-first-region" class="nav-link" data-scroll-target="#part-16---explanation-for-excluding-the-first-region">Part 16 - Explanation for excluding the first region</a></li>
+  <li><a href="#part-17---present-results-in-a-table" id="toc-part-17---present-results-in-a-table" class="nav-link" data-scroll-target="#part-17---present-results-in-a-table">Part 17 - Present results in a table</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><strong>Interpretation</strong></a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings:</a></li>
+  <li><a href="#model-performance" id="toc-model-performance" class="nav-link" data-scroll-target="#model-performance">Model Performance:</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CPS Data Exercise</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 14, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="setting-up-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-the-environment">Setting Up the Environment</h3>
+</section>
+<section id="part-3---importing-data" class="level3">
+<h3 class="anchored" data-anchor-id="part-3---importing-data">Part 3 - Importing Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the dataset</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>CPSDATA <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"CPSDATA.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View column names and data types</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CPSDATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   146133 obs. of  20 variables:
+ $ YEAR       : int  2023 2023 2023 2023 2023 2023 2023 2023 2023 2023 ...
+ $ SERIAL     : int  1 1 2 2 10 11 11 12 12 13 ...
+ $ MONTH      : int  3 3 3 3 3 3 3 3 3 3 ...
+ $ CPSID      : num  2.02e+13 2.02e+13 2.02e+13 2.02e+13 2.02e+13 ...
+ $ ASECFLAG   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ ASECWTH    : num  1580 1580 1790 1790 1308 ...
+ $ REGION     : int  11 11 11 11 11 11 11 11 11 11 ...
+ $ STATEFIP   : int  23 23 23 23 23 23 23 23 23 23 ...
+ $ STATECENSUS: int  11 11 11 11 11 11 11 11 11 11 ...
+ $ COUNTY     : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ PERNUM     : int  1 2 1 2 1 1 2 1 2 1 ...
+ $ CPSIDV     : num  2.02e+14 2.02e+14 2.02e+14 2.02e+14 2.02e+14 ...
+ $ CPSIDP     : num  2.02e+13 2.02e+13 2.02e+13 2.02e+13 2.02e+13 ...
+ $ ASECWT     : num  1580 1580 1790 1790 1308 ...
+ $ AGE        : int  66 68 52 51 78 65 68 74 74 76 ...
+ $ SEX        : int  2 2 2 1 2 1 2 2 1 1 ...
+ $ RACE       : int  100 100 100 100 100 100 100 100 100 100 ...
+ $ MARST      : int  5 5 1 1 5 1 1 1 1 1 ...
+ $ EDUC99     : int  10 10 10 11 10 11 13 5 5 16 ...
+ $ INCWAGE    : int  0 0 0 42000 0 55000 52000 0 0 0 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure numeric columns are numeric</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>CPSDATA[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(CPSDATA, <span class="cf">function</span>(x) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.character</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">all</span>(<span class="fu">grepl</span>(<span class="st">"^[0-9]+$"</span>, x))) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(x)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    x</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-4---sex-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-4---sex-variable">Part 4 - SEX Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate new column 'FEMALE'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>FEMALE <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>SEX <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>FEMALE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 0 1 0</code></pre>
+</div>
+</div>
+</section>
+<section id="part-5---race-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-5---race-variable">Part 5 - RACE Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate new column 'NONWHITE'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>NONWHITE <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>RACE <span class="sc">!=</span> <span class="dv">100</span> <span class="sc">&amp;</span> CPSDATA<span class="sc">$</span>RACE <span class="sc">!=</span> <span class="dv">999</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>NONWHITE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 0 0 0</code></pre>
+</div>
+</div>
+</section>
+<section id="part-6---marst-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-6---marst-variable">Part 6 - MARST Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate new column 'MARRIED'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>MARRIED <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>MARST <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>MARRIED)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 1 1 0 1</code></pre>
+</div>
+</div>
+</section>
+<section id="part-7---educ99-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-7---educ99-variable">Part 7 - EDUC99 Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate new column 'HIGHSCHOOL'</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>HIGHSCHOOL <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>EDUC <span class="sc">==</span> <span class="dv">18</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>HIGHSCHOOL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 0 0 0</code></pre>
+</div>
+</div>
+</section>
+<section id="part-8---incwage-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-8---incwage-variable">Part 8 - INCWAGE Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace 99999998 and 99999999 with NA in INCWAGE</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>INCWAGE[CPSDATA<span class="sc">$</span>INCWAGE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">99999998</span>, <span class="dv">99999999</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>INCWAGE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]     0     0     0 42000     0 55000</code></pre>
+</div>
+</div>
+</section>
+<section id="part-9---region-variable" class="level3">
+<h3 class="anchored" data-anchor-id="part-9---region-variable">Part 9 - REGION Variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recode Region variable</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>REGION <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">12</span>), <span class="dv">1</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">22</span>), <span class="dv">2</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">33</span>), <span class="dv">3</span>, <span class="dv">4</span>)))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA<span class="sc">$</span>REGION)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1 1 1</code></pre>
+</div>
+</div>
+</section>
+<section id="part-10---drop-old-variables" class="level3">
+<h3 class="anchored" data-anchor-id="part-10---drop-old-variables">Part 10 - DROP OLD VARIABLES</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop columns SEX, RACE, MARST, EDUC99</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>CPSDATA <span class="ot">&lt;-</span> <span class="fu">subset</span>(CPSDATA, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(SEX, RACE, MARST, EDUC99))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CPSDATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  YEAR SERIAL MONTH       CPSID ASECFLAG ASECWTH REGION STATEFIP STATECENSUS
+1 2023      1     3 2.02201e+13        1 1580.07      1       23          11
+2 2023      1     3 2.02201e+13        1 1580.07      1       23          11
+3 2023      2     3 2.02301e+13        1 1789.60      1       23          11
+4 2023      2     3 2.02301e+13        1 1789.60      1       23          11
+5 2023     10     3 2.02202e+13        1 1307.92      1       23          11
+6 2023     11     3 2.02212e+13        1 1307.41      1       23          11
+  COUNTY PERNUM      CPSIDV      CPSIDP  ASECWT AGE INCWAGE FEMALE NONWHITE
+1      0      1 2.02201e+14 2.02201e+13 1580.07  66       0      1        0
+2      0      2 2.02201e+14 2.02201e+13 1580.07  68       0      1        0
+3      0      1 2.02301e+14 2.02301e+13 1789.60  52       0      1        0
+4      0      2 2.02301e+14 2.02301e+13 1789.60  51   42000      0        0
+5      0      1 2.02202e+14 2.02202e+13 1307.92  78       0      1        0
+6      0      1 2.02212e+14 2.02212e+13 1307.41  65   55000      0        0
+  MARRIED HIGHSCHOOL
+1       0          0
+2       0          0
+3       1          0
+4       1          0
+5       0          0
+6       1          0</code></pre>
+</div>
+</div>
+</section>
+<section id="part-11---descriptive-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="part-11---descriptive-statistics">Part 11 - DESCRIPTIVE STATISTICS</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Continuous variables: Compute mean, standard deviation, min, and max</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>continuous_vars <span class="ot">&lt;-</span> CPSDATA <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCWAGE) <span class="sc">%&gt;%</span> <span class="co"># Add other continuous variables if needed</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(INCWAGE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(INCWAGE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(INCWAGE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(INCWAGE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Transpose continuous_vars for better display with statistics as rows</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>continuous_vars <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic =</span> <span class="fu">c</span>(<span class="st">"Mean"</span>, <span class="st">"SD"</span>, <span class="st">"Min"</span>, <span class="st">"Max"</span>),</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">INCWAGE =</span> <span class="fu">c</span>(continuous_vars<span class="sc">$</span>Mean, continuous_vars<span class="sc">$</span>SD, continuous_vars<span class="sc">$</span>Min, continuous_vars<span class="sc">$</span>Max)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Descriptive statistics for continuous variables:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Descriptive statistics for continuous variables:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(continuous_vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Statistic    INCWAGE
+1      Mean   39406.98
+2        SD   73287.35
+3       Min       0.00
+4       Max 1549999.00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorical variables: Compute frequency and proportion</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>categorical_vars <span class="ot">&lt;-</span> CPSDATA <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(FEMALE, NONWHITE, MARRIED, HIGHSCHOOL, REGION)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary table for each categorical variable</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>categorical_stats <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(categorical_vars), <span class="cf">function</span>(var) {</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(categorical_vars[[var]], <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  prop_table <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq_table)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine frequency and proportion into a data frame</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> var,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Category =</span> <span class="fu">names</span>(freq_table),</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Frequency =</span> <span class="fu">as.numeric</span>(freq_table),</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Proportion =</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(prop_table), <span class="dv">4</span>) <span class="co"># Rounded for better readability</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all categorical summaries into a single data frame</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>categorical_stats_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, categorical_stats)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Descriptive statistics for categorical variables:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Descriptive statistics for categorical variables:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(categorical_stats_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Variable Category Frequency Proportion
+1      FEMALE        0     71299     0.4879
+2      FEMALE        1     74834     0.5121
+3    NONWHITE        0    111621     0.7638
+4    NONWHITE        1     34512     0.2362
+5     MARRIED        0     87497     0.5987
+6     MARRIED        1     58636     0.4013
+7  HIGHSCHOOL        0    143960     0.9851
+8  HIGHSCHOOL        1      2173     0.0149
+9      REGION        1     22386     0.1532
+10     REGION        2     27411     0.1876
+11     REGION        3     54526     0.3731
+12     REGION        4     41810     0.2861</code></pre>
+</div>
+</div>
+</section>
+<section id="part-12---incwage-fractions" class="level3">
+<h3 class="anchored" data-anchor-id="part-12---incwage-fractions">Part 12 - INCWAGE Fractions</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust zero values in INCWAGE</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>INCWAGE <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>INCWAGE <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.01</span>, CPSDATA<span class="sc">$</span>INCWAGE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-13---model-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-13---model-1">Part 13 - MODEL 1</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-transform INCWAGE and estimate the first model</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(INCWAGE) <span class="sc">~</span> FEMALE <span class="sc">+</span> NONWHITE <span class="sc">+</span> MARRIED <span class="sc">+</span> HIGHSCHOOL, <span class="at">data =</span> CPSDATA)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Heteroskedasticity-robust standard errors</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model1, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model1, <span class="at">type =</span> <span class="st">"HC"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+             Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)  4.360093   0.041205 105.8145  &lt; 2e-16 ***
+FEMALE      -1.421474   0.043653 -32.5632  &lt; 2e-16 ***
+NONWHITE    -0.092125   0.051793  -1.7787  0.07529 .  
+MARRIED      1.538626   0.043965  34.9962  &lt; 2e-16 ***
+HIGHSCHOOL   2.573072   0.155184  16.5808  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="part-14---model-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-14---model-2">Part 14 - MODEL 2</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the second model with interaction</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(INCWAGE) <span class="sc">~</span> FEMALE <span class="sc">+</span> NONWHITE <span class="sc">+</span> FEMALE<span class="sc">:</span>NONWHITE <span class="sc">+</span> MARRIED <span class="sc">+</span> HIGHSCHOOL, <span class="at">data =</span> CPSDATA)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Heteroskedasticity-robust standard errors</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model2, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model2, <span class="at">type =</span> <span class="st">"HC"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+                 Estimate Std. Error  t value  Pr(&gt;|t|)    
+(Intercept)      4.458363   0.042940 103.8289 &lt; 2.2e-16 ***
+FEMALE          -1.613473   0.049810 -32.3929 &lt; 2.2e-16 ***
+NONWHITE        -0.524535   0.074894  -7.0037 2.507e-12 ***
+MARRIED          1.539463   0.043960  35.0193 &lt; 2.2e-16 ***
+HIGHSCHOOL       2.575206   0.155322  16.5798 &lt; 2.2e-16 ***
+FEMALE:NONWHITE  0.816851   0.103118   7.9215 2.367e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="part-15---model-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-15---model-3">Part 15 - MODEL 3</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create region dummies</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>R2 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>R3 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>CPSDATA<span class="sc">$</span>R4 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(CPSDATA<span class="sc">$</span>REGION <span class="sc">==</span> <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the third model</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(INCWAGE) <span class="sc">~</span> FEMALE <span class="sc">+</span> NONWHITE <span class="sc">+</span> FEMALE<span class="sc">:</span>NONWHITE <span class="sc">+</span> MARRIED <span class="sc">+</span> HIGHSCHOOL <span class="sc">+</span> R2 <span class="sc">+</span> R3 <span class="sc">+</span> R4, <span class="at">data =</span> CPSDATA)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Heteroskedasticity-robust standard errors</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model3, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model3, <span class="at">type =</span> <span class="st">"HC"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+                 Estimate Std. Error  t value  Pr(&gt;|t|)    
+(Intercept)      4.665094   0.066362  70.2981 &lt; 2.2e-16 ***
+FEMALE          -1.611997   0.049780 -32.3821 &lt; 2.2e-16 ***
+NONWHITE        -0.460632   0.074997  -6.1420 8.175e-10 ***
+MARRIED          1.534793   0.043943  34.9268 &lt; 2.2e-16 ***
+HIGHSCHOOL       2.552599   0.155206  16.4465 &lt; 2.2e-16 ***
+R2               0.207891   0.074683   2.7837 0.0053758 ** 
+R3              -0.512417   0.065894  -7.7764 7.522e-15 ***
+R4              -0.230184   0.068649  -3.3531 0.0007995 ***
+FEMALE:NONWHITE  0.820366   0.103048   7.9610 1.721e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="part-16---explanation-for-excluding-the-first-region" class="level3">
+<h3 class="anchored" data-anchor-id="part-16---explanation-for-excluding-the-first-region">Part 16 - Explanation for excluding the first region</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explanation:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Excluding the first region avoids perfect multicollinearity, commonly known as the "dummy variable trap."</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># By excluding one region, the model can estimate the effects of the other regions relative to the excluded region.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-17---present-results-in-a-table" class="level3">
+<h3 class="anchored" data-anchor-id="part-17---present-results-in-a-table">Part 17 - Present results in a table</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine results into a table</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model1, model2, model3,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"text"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Regression Results"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>, <span class="st">"Model 3"</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"FEMALE"</span>, <span class="st">"NONWHITE"</span>, <span class="st">"FEMALE:NONWHITE"</span>, <span class="st">"MARRIED"</span>, <span class="st">"HIGHSCHOOL"</span>, <span class="st">"R2"</span>, <span class="st">"R3"</span>, <span class="st">"R4"</span>),</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">"Log(INCWAGE)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regression Results
+=======================================================================================================
+                                                    Dependent variable:                                
+                    -----------------------------------------------------------------------------------
+                                                       Log(INCWAGE)                                    
+                              Model 1                     Model 2                     Model 3          
+                                (1)                         (2)                         (3)            
+-------------------------------------------------------------------------------------------------------
+FEMALE                       -1.421***                   -1.613***                   -1.612***         
+                              (0.044)                     (0.050)                     (0.050)          
+                                                                                                       
+NONWHITE                      -0.092*                    -0.525***                   -0.461***         
+                              (0.052)                     (0.075)                     (0.075)          
+                                                                                                       
+FEMALE:NONWHITE              1.539***                    1.539***                    1.535***          
+                              (0.044)                     (0.044)                     (0.044)          
+                                                                                                       
+MARRIED                      2.573***                    2.575***                    2.553***          
+                              (0.162)                     (0.162)                     (0.161)          
+                                                                                                       
+HIGHSCHOOL                                                                           0.208***          
+                                                                                      (0.075)          
+                                                                                                       
+R2                                                                                   -0.512***         
+                                                                                      (0.066)          
+                                                                                                       
+R3                                                                                   -0.230***         
+                                                                                      (0.069)          
+                                                                                                       
+R4                                                       0.817***                    0.820***          
+                                                          (0.103)                     (0.103)          
+                                                                                                       
+Constant                     4.360***                    4.458***                    4.665***          
+                              (0.041)                     (0.043)                     (0.066)          
+                                                                                                       
+-------------------------------------------------------------------------------------------------------
+Observations                  116,650                     116,650                     116,650          
+R2                             0.023                       0.024                       0.025           
+Adjusted R2                    0.023                       0.024                       0.025           
+Residual Std. Error     7.443 (df = 116645)         7.441 (df = 116644)         7.437 (df = 116641)    
+F Statistic         689.581*** (df = 4; 116645) 564.575*** (df = 5; 116644) 372.340*** (df = 8; 116641)
+=======================================================================================================
+Note:                                                                       *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation"><strong>Interpretation</strong></h3>
+<p>The regression analysis (Model 3) examines the effects of gender, race, marital status, education, and region on the natural logarithm of income (<code>log(INCWAGE)</code>) using heteroskedasticity-robust standard errors. The model includes interaction terms and regional dummy variables to account for potential differences across groups and regions.</p>
+</section>
+<section id="key-findings" class="level3">
+<h3 class="anchored" data-anchor-id="key-findings">Key Findings:</h3>
+<ol type="1">
+<li><strong>Gender</strong>:
+<ul>
+<li>The coefficient for <code>FEMALE</code> is significant (β = -1.612, SE = 0.050, p &lt; .01), indicating that women, on average, have 161.2% lower income compared to men, holding all other variables constant.</li>
+</ul></li>
+<li><strong>Race</strong>:
+<ul>
+<li>The coefficient for <code>NONWHITE</code> is significant (β = -0.461, SE = 0.075, p &lt; .01). This suggests that nonwhite individuals have 46.1% lower income than white individuals, all else being equal.</li>
+</ul></li>
+<li><strong>Gender × Race Interaction</strong>:
+<ul>
+<li>The interaction term <code>FEMALE:NONWHITE</code> is significant (β = 1.535, SE = 0.044, p &lt; .01), indicating that the income gap associated with gender is mitigated for nonwhite women.</li>
+</ul></li>
+<li><strong>Marital Status</strong>:
+<ul>
+<li>Being married (<code>MARRIED</code>) is associated with a significant increase in income (β = 2.553, SE = 0.161, p &lt; .01), suggesting that married individuals have 255.3% higher income on average compared to unmarried individuals.</li>
+</ul></li>
+<li><strong>Education</strong>:
+<ul>
+<li>The coefficient for having a high school diploma (<code>HIGHSCHOOL</code>) is significant (β = 0.208, SE = 0.075, p &lt; .01), indicating that high school graduates earn 20.8% more than those without a high school diploma.</li>
+</ul></li>
+<li><strong>Region</strong>:
+<ul>
+<li>The regional dummy variables reveal significant income disparities across regions:
+<ul>
+<li>Individuals in Region 2 (<code>R2</code>) earn 51.2% less than those in Region 1 (baseline) (β = -0.512, SE = 0.066, p &lt; .01).</li>
+<li>Individuals in Region 3 (<code>R3</code>) earn 23.0% less than those in Region 1 (β = -0.230, SE = 0.069, p &lt; .01).</li>
+<li>Individuals in Region 4 (<code>R4</code>) earn 82.0% more than those in Region 1 (β = 0.820, SE = 0.103, p &lt; .01).</li>
+</ul></li>
+</ul></li>
+<li><strong>Constant Term</strong>:
+<ul>
+<li>The intercept is significant (β = 4.665, SE = 0.066, p &lt; .01), representing the baseline <code>log(INCWAGE)</code> for men, white individuals, unmarried, without a high school diploma, and residing in Region 1.</li>
+</ul></li>
+</ol>
+</section>
+<section id="model-performance" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance">Model Performance:</h3>
+<ul>
+<li><strong>R²</strong>: The model explains 2.5% of the variance in <code>log(INCWAGE)</code>.</li>
+<li><strong>F-statistic</strong>: The overall model is statistically significant (F(8, 116,641) = 372.34, p &lt; .01), suggesting that the predictors collectively have a significant effect on income.</li>
+</ul>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion:</h3>
+<p>Model 3 highlights significant disparities in income associated with gender, race, marital status, education, and geographic region. These findings emphasize the interplay of demographic and regional factors in shaping income distributions.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

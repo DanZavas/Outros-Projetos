@@ -1,0 +1,253 @@
+---
+title: "Summary Statistics, Assumptions and Regression II"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+### Data Sources
+
+1.  National Institute of Corrections of the U.S. Department of Justice
+
+    **Link:** <https://nicic.gov/projects/state-statistics-information>
+
+    **Description:** The link opens up to data mapped by state in the U.S. regarding several statistics from inmates in the year of 2019, including their median age. The data is given in years at state-level.
+
+2. Bureau of Labor Statistics of the U.S. Department of Labor
+
+    **Link:** <https://www.bls.gov/lau/lastrk19.htm>
+
+    **Description:** The link opens up to a dataset where is presented data on unemployment rates across the United States in the year of 2019. The data is given in percent at a state-level.
+
+Both sets of data were either downloaded in .xlsx format or retrieved by link in MS Excel, then  organized into a .csv file containing three variables: "State", "Age", and "Unemployment_Rate", explained in the codebook below. The set of data is organized and displayed in alphabetical order of U.S. states names.
+
+### Data from .csv File
+
+![](data.png)
+
+
+### Codebook
+
+![](codebook.png)
+
+### Loading Packages
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+require(jtools)
+require(ggplot2)
+require(vtable)
+require(Hmisc)
+require(Rmisc)
+require(gridExtra)
+require(moments)
+require(lmtest)
+require(car)
+require(psych)
+```
+
+### Entering Data
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+my_data <- read.csv("C:/Users/profz/Desktop/my_work/data.csv", sep = ";")
+head(my_data)
+```
+
+### Summary Statistics - Inmates' Median Age
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+describe(my_data$Age)
+round(CI(my_data$Age, ci=0.95),1)
+```
+
+### Summary Statistics - Unemployment Rate
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+describe(my_data$Unemployment_Rate)
+round(CI(my_data$Unemployment_Rate, ci=0.95),1)
+```
+
+### Data Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+my_data$ur_t <- log(my_data$Unemployment_Rate)
+head(my_data)
+```
+
+### Assessing Normality - Before and After Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+# Before Transformation
+shapiro.test(my_data$Age);shapiro.test(my_data$Unemployment_Rate)
+# After Transformation
+shapiro.test(my_data$ur_t)
+```
+
+### Boxplots for Age - No Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+age1 <- ggplot(my_data, aes(x=Age,y=""))+
+  geom_boxplot(outlier.colour="black",outlier.size=4, fill="yellow",lwd=1)+
+  stat_summary(fun=mean, geom="point", shape=3, size=5)+
+  theme_bw()+
+  labs(title="Median Age of Inmates in the U.S. in 2019",
+       x="Median Age (years)", y="")+
+  theme(plot.title = element_text(face="bold",size=16),
+        axis.text.x =element_text(size=14, color="black"),
+        axis.title.x=element_text(size=14),
+        axis.ticks.y=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid = element_blank(),
+        axis.line=element_line(colour="black"),
+        panel.border=element_rect(size=2),
+        panel.background = element_rect(fill="lightgreen"))+
+  scale_x_continuous(limits = c(30,45))
+age1
+```
+
+### Boxplots for Unemployment Rate - Before and After Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+ur1 <- ggplot(my_data, aes(x=Unemployment_Rate,y=""))+
+  geom_boxplot(outlier.colour="black",outlier.size=4, fill="yellow",lwd=1)+
+  stat_summary(fun=mean, geom="point", shape=3, size=5)+
+  theme_bw()+
+  labs(title="Unemployment Rate in the U.S. in 2019",
+       x="Unemployment Rate (%)", y="")+
+  theme(plot.title = element_text(face="bold",size=16),
+        axis.text.x =element_text(size=14, color="black"),
+        axis.title.x=element_text(size=14),
+        axis.ticks.y=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid = element_blank(),
+        axis.line=element_line(colour="black"),
+        panel.border=element_rect(size=2),
+        panel.background = element_rect(fill="lightgreen"))+
+  scale_x_continuous(limits=c(2,10))
+ur2 <- ggplot(my_data, aes(x=ur_t,y=""))+
+  geom_boxplot(outlier.colour="black",outlier.size=4, fill="yellow",lwd=1)+
+  stat_summary(fun=mean, geom="point", shape=3, size=5)+
+  theme_bw()+
+  labs(title="Log of Unemployment Rate in the U.S. in 2019",
+       x="Unemployment Rate (log scale)", y="")+
+  theme(plot.title = element_text(face="bold",size=16),
+        axis.text.x =element_text(size=14, color="black"),
+        axis.title.x=element_text(size=14),
+        axis.ticks.y=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid = element_blank(),
+        axis.line=element_line(colour="black"),
+        panel.border=element_rect(size=2),
+        panel.background = element_rect(fill="lightgreen"))+
+  scale_x_continuous(limits=c(0.5,2.5))
+grid.arrange(ur1,ur2, ncol=1)
+```
+
+### Scatterplots
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+age.ur <- ggplot(my_data,aes(x=Age, y=Unemployment_Rate))+
+  geom_point(size=3, col="yellow")+
+  theme_bw()+
+  labs(title="Unemployment Rate vs. Median Inmate Age in the U.S.\n(2019)",
+       x="Median Inmates Age (years)", 
+       y="Unemployment Rate (%)")+
+  theme(plot.title = element_text(face="bold",size=16),
+        axis.text.x =element_text(size=12, color="black"),
+        axis.text.y =element_text(size=12, color="black"),
+        axis.title.x=element_text(size=14),
+        axis.title.y=element_text(size=14),
+        axis.ticks.x=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.grid = element_blank(),
+        axis.line=element_line(colour="black"),
+        panel.border=element_rect(size=2),
+        panel.background = element_rect(fill="lightgreen"))+
+  geom_smooth(method=lm, se=TRUE)+
+  scale_x_continuous(limits=c(30,45))+
+  scale_y_continuous(limits = c(2,10))
+age.ur.l <- ggplot(my_data,aes(x=Age, y=ur_t))+
+  geom_point(size=3, col="yellow")+
+  theme_bw()+
+  labs(title="Unemployment Rate vs. Median Inmate Age in the U.S.\n(2019)",
+       x="Median Inmates Age (years)", 
+       y="Unemployment Rate (log scale)")+
+  theme(plot.title = element_text(face="bold",size=16),
+        axis.text.x =element_text(size=12, color="black"),
+        axis.text.y =element_text(size=12, color="black"),
+        axis.title.x=element_text(size=14),
+        axis.title.y=element_text(size=14),
+        axis.ticks.x=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.grid = element_blank(),
+        axis.line=element_line(colour="black"),
+        panel.border=element_rect(size=2),
+        panel.background = element_rect(fill="lightgreen"))+
+  geom_smooth(method=lm, se=TRUE)+
+  scale_x_continuous(limits=c(30,45))+
+  scale_y_continuous(limits = c(0.5,2.5))
+age.ur;age.ur.l
+```
+
+### Correlation Analysis - After Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+cor.test(my_data$Age, my_data$ur_t)
+```
+
+### Regression Analysis - After Transformation
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+reg_1 <-lm(ur_t~Age,data=my_data)
+summ(reg_1, digits = 4)
+```
+
+### Regression Assumptions
+
+```{r, echo=TRUE,include=TRUE,warning=FALSE,message=FALSE}
+# Normality of Residuals
+shapiro.test(residuals.lm(reg_1))
+# Mean of Residuals = 0
+round(mean(residuals.lm(reg_1)),4)
+# Homogeneity of Residuals
+bptest(reg_1)
+# Independence of Residuals
+durbinWatsonTest(reg_1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

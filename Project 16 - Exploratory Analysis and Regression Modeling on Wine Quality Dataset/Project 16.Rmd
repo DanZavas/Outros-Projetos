@@ -1,0 +1,309 @@
+---
+title: <span style="color:#20B2AA"> Statistical Insights on Driving Factors for Wine Quality </span> 
+author: "by Myra Jatoi"
+date: "April 27, 2022"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document: default
+fontsize: 12pt
+geometry: left=3cm,right=3cm,top=3cm,bottom=3cm
+linkcolor: blue
+csl: nature.csl
+abstract: |
+  This report brings insights from an online-available data set containing information from a sample of 178 wines from different locations (California, Boston, and Washington) divided into 13 variables referring to their quality characteristics. Overall, the following conclusions can be made: (1)driving factors for wine quality can present high variability depending on their location of production, (2) among all variables, the most consistent across all regions was the maleic acid content, (3) there is a significant relationship between the content of flavonoids and the content of phenols in wine collected across all three regions, and (4) the content of magnesium in the sampled wine bottles present differences in terms of their geographical location, as expected, given that such parameter may be susceptible to influence of multiple external factors.
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+```{r packages and data, echo=TRUE, include=FALSE, warning=FALSE, message=FALSE}
+require(mosaic)
+require(psych)
+require(dplyr)
+require(jtools)
+require(kableExtra)
+require(car)
+require(readxl)
+require(knitr)
+require(qdap)
+require(ggplot2)
+require(Rmisc)
+require(pastecs)
+require(dplyr)
+require(ggpubr)
+require(xtable)
+my_data <- read_excel("C:/Users/profz/Desktop/my_work/wine(ALY2010)-1.xlsx")
+```
+
+<span style="color:#20B2AA"> <font size="4"> **1. Introduction** </font> </span>
+
+According to a statistical data report from the OIV (International Organization of Vineyards and Wine) on the world winemaking market, in 2018 the consumption of wine reached 246 million liters. There has been a slight growth since 2014, remaining practically stable since 2017 (OIV, 2018). Knowing such prominent information is a consequence of data analysis, which permits winemaking companies from all around the world to collect and analyze data to understand the pattern of wine consumption and how this market changes over the years (Elliot, 2018; Elliot et al., 2022). Thus, data analysis is a procedure that aims to transform numbers and information into insights for decision making. With digital transformation and the internet, companies started to work with a large volume of data, such as consumer purchase profile, market strategies and performance indicators (Vanacore et al., 2019; Wongsuphasawat et al., 2019). Overall, there are several techniques for data analysis and the choice depends on the type of data that we have available (Tayebi Abolhasani, 2019). For example, when using regression analysis, a manager or any other person is able to understand how two variables are associated, i.e., how one variable (predictor) affects the behavior of another variable (response) in a causal or non-causal way (Jing, 2020; Murray & Wilson, 2021). In the wine industry, a regression analysis on wine data would be helpful to understand how the contents of flavonoids and phenols are associated across different harvests (Gupta, 2018). Another example is ANOVA analysis, which we use to compare the means of a response variable by means of a factor that has three or more levels (e.g., the mean house prices across different neighborhoods) (Rumsey, 2021). In the case of wine industry, an ANOVA analysis would be helpful in understanding how, for example, types of wine differ in terms of quality parameters (content of magnesium, color intensity, etc.). In these terms, this report brings insights from an online-available data set containing information from a sample of 178 wines from different locations (California, Boston, and Washington) divided into 13 variables referring to their quality characteristics.    
+
+<span style="color:#20B2AA"> <font size="4"> **2. Analysis** </font> </span>
+
+This section presents some findings regarding descriptive statistics, probabilities and graphs, confidence intervals, regression analysis, and ANOVA analysis on factors that drive the quality of wines from different regions of the U.S.
+
+<span style="color:#20B2AA"> <font size="3"> **2.1. Descriptive Statistics** </font> </span>
+
+Below in Tables 1a and 1b are presented overall measures of central tendency, dispersion, and symmetry for factors driving the quality of wines, obtained from a sample of n = 178 bottles. There are also shown box plots for each factor by type of wine (Figure 1).
+
+```{r descriptive, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+table_1a <- round(stat.desc(my_data[2:7], basic = FALSE),2) 
+rownames(table_1a)<- c("Median",
+                       "Mean",
+                       "Std. Error",
+                       "95% C.I.",
+                       "Variance",
+                       "Std. Dev.",
+                       "Coef. Var.")
+table_1a %>%kable(align = "c",
+                  caption = "Table 1a. Descriptive Statistics for Wine Quality Factors (Part 1)",
+                  table.attr = "style='width:100%;'") %>%
+  kable_classic_2(bootstrap_options=c("bordered"),
+                  html_font = "Cambria",
+                  position = "center",
+                  font_size = 12)
+
+table_1b <- round(stat.desc(my_data[8:14], basic = FALSE),2) 
+rownames(table_1b)<- c("Median",
+                       "Mean",
+                       "Std. Error",
+                       "95% C.I.",
+                       "Variance",
+                       "Std. Dev.",
+                       "Coef. Var.")
+table_1b %>%kable(align = "c",
+                  caption = "Table 1b. Descriptive Statistics for Wine Quality Factors (Part 2)",
+                  table.attr = "style='width:100%;'") %>%
+  kable_classic_2(bootstrap_options=c("hover","bordered"),
+                  html_font = "Cambria",
+                  position = "center",
+                  font_size = 12)
+```
+
+For aesthetics purposes, given that there are multiple variables, the table with descriptive statistics was divided in two. As observed, based on a sample of n = 178, most of the variables show high variability which reflects the different levels of wine quality in the sample. For example, the largest variability was seen from the content of flavonoids (CV = 0.49 or 49%), while the smallest variability was seen from the content of alcohol (CV = 0.06 or 6%). The measures of central tendency (mean and median) suggest that most of the variables seem to have symmetrical distribution (i.e., approach to normality). Extreme cases where the approach to normality seems not present can be checked from variables such as malic acid content, color intensity, and proline. This approach to normality is important because it is a basic assumption for several parametric analysis in data science. However, since the sample size is quite large, the approach to normality tends to be natural (n > 30 observations required). The 95% confidence intervals suggest that one could be 95% confident that wine samples collected from these different geographic regions of the U.S. are likely to be within the presented range. That is, using the alcohol content as example, one could be 95% confident that the content of random wine samples from California, Boston, and Washington is between 12.88 vol.% and 13.12 vol.%, given the 95% confidence width of 0.12 vol.% and the mean of 13 vol.%.  
+
+<span style="color:#20B2AA"> <font size="3"> **2.2. Probabilities and Other Graphs** </font> </span>
+
+Presented below in Table 1 and associated plots are the frequency distribution, relative frequencies, percents, and cumulative frequencies of wine samples from the three locations (California, Boston, and Washington). 
+
+```{r probs, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE,fig.show="hold", out.width="50%", fig.height=3, fig.width=5}
+table_2 <-dist_tab(my_data$`Wine Type`)%>%
+  kable(align = "c", 
+             caption = "Table 2. Frequency Distribution for Wine Type",
+             table.attr = "style='width:60%;'",
+        col.names = c("Wine Type", 
+                      "Frequency", 
+                      "Cumulative Frequency",
+                      "Percent", 
+                      "Cumulative Percent")) %>%
+  kable_classic_2(bootstrap_options=c("bordered"),
+              html_font = "Cambria",
+              position = "center",
+              font_size = 12);table_2
+
+p <- dist_tab(my_data$`Wine Type`)
+par(mar = c(4, 4, .7, .7))
+barplot(p$freq,
+        xlab="",
+        ylab="Frequency",
+        col="#D4F0F0", 
+        names.arg = p$interval,
+        ylim = c(0,90))
+box()
+barplot(p$cum.freq,
+        xlab="",
+        ylab="Cumulative Frequencies",
+        col="#D4F0F0",
+        names.arg = p$interval,
+        ylim = c(0,190))
+box()
+barplot(p$percent,
+        xlab="Wine Type",
+        ylab="Percent",
+        col="#D4F0F0",
+        names.arg = p$interval,
+        ylim = c(0,50))
+box()
+barplot(p$cum.percent,
+        xlab="Wine Type",
+        ylab="Cumulative Percent",
+        col="#D4F0F0",
+        names.arg = p$interval,
+        ylim = c(0,105))
+box()
+```
+
+As observed, the majority of samples come from Washington (n = 71, 39.89%), followed by California (n = 59, 33.15%), and then Boston (n = 48, 26.97%). 
+
+<span style="color:#20B2AA"> <font size="3"> **2.3. Confidence Intervals** </font> </span>
+
+Below in Table 4 to Table 6 are presented the 90%, 94% and 98% confidence intervals for ash content, color intensity, and phenols, respectively. 
+
+```{r CI,echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+ash_90_ci <- round(CI(my_data$`Ash Content`, ci=0.90),2)%>%
+              kable(align = "c",
+                    caption = "Table 4. 90% Confidence Interval for Ash Content",
+                    table.attr = "style='width:40%;'",
+                    col.names = c("Statistics"))%>%
+              kable_classic_2(bootstrap_options=c("bordered"),
+                              html_font = "Cambria",
+                              position = "center",
+                              font_size = 12);ash_90_ci
+
+col_i_94_ci <- round(CI(my_data$`Color Intensity`, ci=0.94),2)%>%
+              kable(align = "c",
+                    caption = "Table 5. 94% Confidence Interval for Color Intensity",
+                    table.attr = "style='width:40%;'",
+                    col.names = c("Statistics"))%>%
+              kable_classic_2(bootstrap_options=c("bordered"),
+                              html_font = "Cambria",
+                              position = "center",
+                              font_size = 12);col_i_94_ci
+
+CA <- my_data %>% filter(`Wine Type`=="California");
+phen_CA_98_ci <- round(CI(CA$Phenols, ci=0.98),2)%>%
+              kable(align = "c",
+                    caption = "Table 6. 98% Confidence Interval for Phenols",
+                    table.attr = "style='width:40%;'",
+                    col.names = c("Statistics"))%>%
+              kable_classic_2(bootstrap_options=c("bordered"),
+                              html_font = "Cambria",
+                              position = "center",
+                              font_size = 12);phen_CA_98_ci
+```
+
+As observed, the confidence intervals provides us some useful information about the selected variables. That is, the inferences are the following:
+
+* One could be 90% confident that the true mean content of ashes in wine samples from California, Boston, and Washington is between 2.33% and 2.40%;
+
+* One could be 94% confident that the true mean color intensity score in wine samples from California, Boston, and Washington is between 4.73 nm and 5.39 nm;
+
+* One could be 98% confident that the true mean phenol content in wine samples from California, Boston, and Washington is between 2.73 mg /100 mL and 2.95 mg / 100 mL;
+
+
+<span style="color:#20B2AA"> <font size="3"> **2.4. Regression Analysis** </font> </span>
+
+Below can be found a correlation and regression analysis between the content of flavonoids (independent variable) and the content of phenols (response variable).
+
+```{r regression, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.height=3, fig.width=5, fig.align = 'center'}
+corr_fla.phen <- ggscatter(my_data, 
+                           x = "Flavanoids", 
+                           y = "Phenols",
+                           add = "reg.line",
+                           add.params = list(color = "#20B2AA", 
+                                             fill = "gray"),
+                           shape = 21, 
+                           size = 3,
+                           conf.int = TRUE,
+                           cor.coef = TRUE, 
+                           cor.method = "pearson",
+                           xlab = "Content of Flavonoids", 
+                           ylab = "Content of Phenols",
+                           cor.coeff.args = list(method = "pearson", 
+                                                 label.x = 0.5,
+                                                 label.y = 3.5,
+                                                 label.sep = "\n"))+
+  border();corr_fla.phen
+reg.fla.phen <- summ(lm(Phenols~Flavanoids,data=my_data), digits = 3, confint = TRUE);reg.fla.phen
+
+```
+
+There has been found a statistically significant correlation between the content of flavonoids and the content of phenols in the sample of n = 178 wine bottles from different locations; r(176) = 0.876, p < 0.001. This means that contents of phenols tend to increase as the content of flavonoids increase. This relationship was further explored by regression analysis, from which the following model was proposed:
+
+<font size="4"> $$\hat{Phenols}=1.196+0.542X_{Flavonoids}$$ </font>
+
+Statistics from the this model suggest it is significant at the 95% confidence level; F(1,176) = 520.95, p < 0.001, R² = 0.747. This means that variations in flavonoids content explained about 74.7% of the variation in phenols in samples of wine from these regions. The relationship proposed by the model suggest that for every 1 mg / 100 mL of flavonoids in these wine samples, the content of phenols increase by 0.542 mg / 100 mL, and this increase is free to vary between 0.495 mg / 100 mL and 0.589 mg /100 mL. The model intercept, on the hand, implies that the estimated mean content of phenols based on the content of flavonoids is 1.196 mg / 100 mL, and this estimation is free to vary between 1.090 mg / 100 mL and 1.302 mg / 100 mL with 95% confidence. 
+
+<span style="color:#20B2AA"> <font size="3"> **2.5. ANOVA Analysis** </font> </span>
+
+Below in Table 8 and associated box plot can be found the results from the ANOVA analysis in which was tested the hypothesis that mean content of magnesium in the sampled wine bottles differ by region. To contextualize, the content of magnesium in wine is important because its deficiency, in addition to the symptoms it causes on the leaves of the vines, can cause production drops, both in quantitative and qualitative terms (Rogiers et al., 2020). Specifically, the presence of magnesium in grape threes and, consequently, in wine, helps in photosynthesis, metabolism of phosphorus, production of sugars, as well as the synthesis of proteins and vitamins (Bai et al., 2019).
+
+```{r anova, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.height=5, fig.width=5, fig.align = 'center'}
+options(knitr.kable.NA = '')
+anova.mag <- aov(my_data$`Magnesium Content`~my_data$`Wine Type`, data=my_data)
+anova.mag.tab <-xtable(anova.mag)
+row.names(anova.mag.tab) <- c("Wine Type","Residuals")
+anova.mag.tab%>%
+              kable(align = "c",
+                    caption = "Table 8. ANOVA Table for Magnesium Content by Wine Type",
+                    table.attr = "style='width:60%;'")%>%
+              kable_classic_2(bootstrap_options=c("bordered"),
+                              html_font = "Cambria",
+                              position = "center",
+                              font_size = 12)
+boxplot(my_data$`Magnesium Content`~ my_data$`Wine Type`,
+        xlab = "Wine Type",
+        ylab="Magnesium Content",
+        col="#D4F0F0")
+```
+
+The results from the ANOVA analysis, F(2, 175) = 12.43, p < 0.001, suggest that the hypothesis of equal magnesium content in wine samples from the three locations should be rejected at the 95% confidence level. Thus, one may infer that wine from different locations can present different contents of magnesium, and this difference can be attributed to several factors such as type of soil, plant management, grape species, etc. (Rogiers et al., 2020).
+
+<span style="color:#20B2AA"> <font size="4"> **3. Conclusion** </font> </span>
+
+From the exposed, the following conclusions can be made:
+
+* Driving factors for wine quality can present high variability depending on their location of production;
+
+* Among all variables, the most consistent across all regions was the maleic acid content;
+
+* There is a significant relationship between the content of flavonoids and the content of phenols in wine collected across all three regions;
+
+* The content of magnesium in the sampled wine bottles present differences in terms of their geographical location, as expected, given that such parameter may be susceptible to influence of multiple external factors;
+
+This report only aimed to apply a statistical approach to better understand how some of the determining factors for wine quality are related and, despite having brought some important information about the data available online, there is still much to be explored on this subject. Anyways, the conclusion of this study could be important for companies in the wine sector were the samples were taken and for others that are somehow related to this product. Knowing the main meanings of wine consumption and the its most attractive attributes can be fundamental for designing marketing strategies, defining positioning and communications. With this project I was also able to understand the importance of “correlation does not imply causation". Just because one variable might seem to be a significant factor in another variable's change, does not mean that one causes the other by itself.   
+
+<span style="color:#20B2AA"> <font size="3"> **4. Appendix** </font> </span>
+
+This report is accompanied of a .Rmd file from which it was generated, including all the calculation made my means of R programming language. 
+
+<span style="color:#20B2AA"> <font size="4"> **5. Acknowledgments** </font> </span>
+
+I'd like to acknowledge everybody that was directly and indirectly involved in the production of this work, specially my instructor and my colleagues which I was able exchange ideas to improve the overall quality of this report.
+
+<span style="color:#20B2AA"> <font size="4"> **6. Bibliography** </font> </span>
+
+* OIV 2018 report on the world vitivinicultural situation. [online] International Organization of Vineyards and Wine. Available at: <https://www.oiv.int/en/oiv-life/oiv-2018-report-on-the-world-vitivinicultural-situation> [Accessed 28 April 2022].
+
+* Elliott, V. (2018). Thinking about the coding process in qualitative data analysis. The Qualitative Report, 23(11), 2850-2861.
+
+* Elliott, M., Franco, A., Ramos, S., Hemingway, K. L., & Marshall, S. (2022). Appendix B: Study Methods: Data Processing, Analysis and Interpretation. Fish and Fisheries in Estuaries: A Global Perspective, 941-1005.
+
+* Vanacore, A., Pellegrino, M. S., Marmor, Y. N., & Bashkansky, E. (2019). Analysis of consumer preferences expressed by prioritization chains. Quality and Reliability Engineering International, 35(5), 1424-1435.
+
+* Wongsuphasawat, K., Liu, Y., & Heer, J. (2019). Goals, process, and challenges of exploratory data analysis: an interview study. arXiv preprint arXiv:1911.00568.
+
+* Tayebi Abolhasani, A. (2019). Introduction to research methodology: Standard procedures for qualitative data analysis. Science and Technology Policy Letters, 9(2), 67-96.
+
+* Jing, L. Y. U. (2020). On Application of Research-Based Teaching in Course of Practical Regression Analysis. Journal of Southwest China Normal University (Natural Science Edition), 45(2), 137-142.
+
+* Murray, L. L., & Wilson, J. G. (2021). Generating data sets for teaching the importance of regression analysis. Decision Sciences Journal of Innovative Education, 19(2), 157-166.
+
+* Gupta, Y. (2018). Selection of important features and predicting wine quality using machine learning techniques. Procedia Computer Science, 125, 305-312.
+
+* Rumsey, D. J. (2021). Statistics II for dummies. John Wiley & Sons.
+
+* Rogiers, S. Y., Greer, D. H., Moroni, F. J., & Baby, T. (2020). Potassium and magnesium mediate the light and CO2 photosynthetic responses of grapevines. Biology, 9(7), 144.
+
+* Bai, X., Wang, L., & Li, H. (2019). Identification of red wine categories based on physicochemical properties. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

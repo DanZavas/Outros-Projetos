@@ -1,0 +1,86 @@
+---
+title: "Logistic Regression Modeling on Subscribers Dataset"
+author: "Danilo Zavarize"
+date: "July 12, 2022"
+output: html_document
+---
+
+#### **Entering the Data Set:**
+
+```{r data, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+library(readr)
+subscribers <- read_csv("subscribers-2.csv")
+head(subscribers)
+```
+
+#### **Question 1:** Suppose there are 3 out of 10 products of type 1 and 7 out of 10 products of type 2. What are the odds of type 1? What is the odds ratio? Discuss the meanings of these terms.
+
+-   **Calling Packages**:
+
+    ```{r packs1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    library(crosstable)
+    ```
+
+-   **Drawing Table:**
+
+    ```{r table1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    values <- c(3,7,10, 7,3,10, 10,10, 20)
+    rown <- c("Type 1", "Type 2", "Total")
+    coln <- c("Yes", "No", "Total")
+    table <- matrix(values,3, dimnames = list(rown,coln));table
+    ```
+
+-   **Calculating Odds for Type 1:**
+
+    ```{r odds1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    odds_type1 <- (table[1,1]/table[1,3])/(1-(table[1,1]/table[1,3]))
+    round(odds_type1,3)
+    ```
+
+-   **Calculating Odds Ratio:**
+
+    ```{r odds2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    odds_type1 <- (table[1,1]/table[1,3])/(1-(table[1,1]/table[1,3]))
+    odds_type2 <- (table[2,1]/table[2,3])/(1-(table[2,1]/table[2,3]))
+    odds_ratio <- odds_type1/odds_type2
+    round(odds_ratio,3)
+    ```
+
+-   **Comments:** [As observed, the odds for type 1 is 0.429. This means that chances of type 1 occurring are smaller than it not occurring. On the other hand, the odds ratio of 0.184 means that odds of type 1 are 0.184 times the odds of type 2.]{style="color: red"}
+
+#### **Question 2:** The dataset "subscribers.csv" (attached) describes whether a customer subscribed (Yes=1) to a magazine and their age and income.
+
+-   **Calling Packages:**
+
+    ```{r packs2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    library(jtools)
+    library(tidyr)
+    ```
+
+-   **Part A: Fit a logistic regression model on the outcome variable "Subscribe" using age and income as the predictor variables and report model summary. Which of the two predictor variables are significant in the regression model?**
+
+    ```{r regression, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    reg <- glm(Subscribe ~.,family=binomial(link='logit'),data=subscribers)
+    summ(reg, confint = TRUE, digits=3)
+    ```
+
+-   **Comments:** [As observed, the model is statistically significant, 𝜒²(2) = 39.293, p \<.001, Pseudo-R² McFadden = 0.071. Also, both the variables selected as predictors are statistically significant at the 95% confidence level.]{style="color: red"}
+
+-   **Part B: Explain the quantitative effect of age and income on log odds and odds of subscription in simple terms.**
+
+    ```{r model, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    round(exp(reg$coefficients),2)
+    ```
+
+-   **Comments:** [As observed, there is a coefficient of 0.023 associated to age and a coefficient of 0.016 associated to income, which both are positive. Therefore, it means that a 1-unit increase in age and income are associated to increases in the probability of subscribing the magazine. Numerically speaking, by exponentiation of these coefficients, we can find their odds on subscription. Thus, as seen above, 1 year increase in age of subscribers increases the odds of subscription by 1.02, as well as does 1 unit increase in income.]{style="color: red"}
+
+-   **Part C: A new customer has entered our database who is 30 years old and has an income of 52 units. Predict whether they are a potential magazine subscriber.**
+
+    ```{r pred, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    newdata <- data.frame(Age = c(30),Income=c(52))
+    probabilities <- reg %>% predict(newdata, type = "response");probabilities
+    predicted.classes <- ifelse(probabilities > 0.5, "Subscriber", "Non-Subscriber")
+    predicted.classes
+    ```
+
+-   **Comments:** [As observed, for a client of 30 years old and income of \$52,000, the probability of him subscribing was estimated in approximately 0.153. By setting the cutoff value in 0.5, we notice that this specific client is not a potential subscriber.]{style="color: red"}

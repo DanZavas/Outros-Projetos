@@ -1,0 +1,146 @@
+---
+title: "Statistical Analysis - Forecasting - Question 2"
+date: "11/11/2021"
+output: html_document
+---
+
+<font size="2"> 
+```{r setup, include=FALSE, message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 100)
+```
+
+# **Entering Dataset**
+
+For this analysis, the dataset "DataLiquor.csv" was used to perform forecasting of liquor selling over the period of 1987 - 2014. This dataset has 336 observations distributed over 4 variables (Time, Year, Month, and Liquor Sales). Below can be found the chunk of code used to retrieve the data and attach it to the workplace in R:
+
+```{r loading data, include=TRUE, message=FALSE,warning=FALSE}
+library(readr)
+DataLiquor <- read_delim("C:/Users/profz/Desktop/DataLiquor.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+head(DataLiquor)
+save(DataLiquor, file = "DataLiquor.RData")
+```
+
+# **Loading Packages**
+
+```{r loading packages, include=TRUE, message=FALSE,warning=FALSE}
+library(openintro)
+library(dplyr)
+library(ggplot2)
+library(e1071)
+library(jtools)
+library(car)
+library(lme4)
+library(tidyverse)
+library(caret)
+library(ggplot2)
+```
+
+# **Plotting**
+
+```{r graph, include=TRUE, message=FALSE,warning=FALSE}
+ggplot(DataLiquor, aes(x = Time, y = Liquor)) +
+  geom_line() + labs(y="Liquor Sales (units)", x = "Time 1987 - 2014 (in months)")
+```
+
+# **Conducting the Regressions**
+
+## **Model 1 - Pure Log Linear**
+
+```{r pure log, include=TRUE, message=FALSE, warning=FALSE}
+model_1 <- lm(log1p(DataLiquor$Liquor)~Time, data=DataLiquor)
+summary(model_1)
+```
+
+## **Model 2 - Pure Seasonal Model**
+
+```{r pure seasonal, include=TRUE, message=FALSE, warning=FALSE}
+m_1 <- ifelse(DataLiquor$M == 1, 1, 0)
+m_2 <- ifelse(DataLiquor$M == 2, 1, 0)
+m_3 <- ifelse(DataLiquor$M == 3, 1, 0)
+m_4 <- ifelse(DataLiquor$M == 4, 1, 0)
+m_5 <- ifelse(DataLiquor$M == 5, 1, 0)
+m_6 <- ifelse(DataLiquor$M == 6, 1, 0)
+m_7 <- ifelse(DataLiquor$M == 7, 1, 0)
+m_8 <- ifelse(DataLiquor$M == 8, 1, 0)
+m_9 <- ifelse(DataLiquor$M == 9, 1, 0)
+m_10 <- ifelse(DataLiquor$M == 10, 1, 0)
+m_11 <- ifelse(DataLiquor$M == 11, 1, 0)
+m_12 <- ifelse(DataLiquor$M == 12, 1, 0)
+dummies_12 <- data.frame(m_1,m_2,m_3,m_4,m_5,m_6,m_7,m_8,m_9,m_10,m_11,m_12)
+DataLiquor$dummies_12 <- dummies_12
+
+model_2 <- lm(log1p(DataLiquor$Liquor)~m_1+m_2+m_3+m_4+m_5+m_6+m_7+m_8+m_9+m_10+m_11+m_12, data=DataLiquor)
+summary(model_2)
+```
+
+## **Model 3 - Log Linear + Seasonal**
+
+```{r log and seasonal, include=TRUE, message=FALSE, warning=FALSE}
+model_3 <- lm(log1p(DataLiquor$Liquor)~Time+m_1+m_2+m_3+m_4+m_5+m_6+m_7+m_8+m_9+m_10+m_11+m_12, data=DataLiquor)
+summary(model_3)
+```
+
+## **Model 4 - Log Quadratic + Seasonal**
+
+```{r log quad and seasonal, include=TRUE, message=FALSE, warning=FALSE}
+model_4 <- lm(log1p(DataLiquor$Liquor)~Time+I(Time^2)+m_1+m_2+m_3+m_4+m_5+m_6+m_7+m_8+m_9+m_10+m_11+m_12, data=DataLiquor)
+summary(model_4)
+```
+
+# **Answer - Part 1**
+
+Below can be found the fitting quality of all four models. In terms of quality of fitting measured by the Adj-R² coefficient, we have the following order for the obtained models: Model 4 (0.9869), Model 3 (0.9244), Model 1(0.8429), and Model 2 (0.0679). Despite the coefficient for Time^2 being very close to zero, adding this term to the model considerably increased the precision of the model. An ANOVA was performed to compare the significance of each model, and the output suggests that, as expected from these summaries, Models 3 and 4 statistically differ from Models 1 and 2 as well as from each other.  
+
+```{r fitting quality, include=TRUE, message=FALSE, warning=FALSE}
+summ(model_1, digits=4)
+summ(model_2, digits=4)
+summ(model_3, digits=4)
+summ(model_4, digits=4)
+anova(model_1,model_2,model_3,model_4)
+```
+
+# **Answer - Part 2**
+
+Yes, there is time series correlation in the errors. As observed, output from the Durbin-Watson indicates a positive autocorrelation in lag 1 of 0.7069, which led to a test statistic of DW = 0.58, p = 0, meaning there is an almost severe autocorrelation in the errors. Additionally, the Ljung-Box Q Test also suggests the same by providing an test statistic of 169.38, p < 0.0001, which means the null hypothesis of autocorrelations up to lag k equal zero should be rejected. 
+
+```{r autocorrelation, include=TRUE, message=FALSE, warning=FALSE}
+dwt(model_4)
+Box.test(residuals(model_4), lag = 1, type = "Ljung")
+```
+
+# **Answer - Part 3**
+
+The table below indicates the values of AIC and SIC/BIC. Since we are interested in finding the best model in terms of fitting, the lowest AIC and SIC/BIC value indicates less information loss than a positive AIC and SIC/BIC and, therefore, a better model. In this case, we have Model 1 being the best fitting among the others, as expected, with a AIC and SIC/BIC scores of approximately -276 and -264, respectively.
+
+```{r aic and bic, include=TRUE, message=FALSE, warning=FALSE}
+aic_m <- c(AIC(model_1),AIC(model_2),AIC(model_3),AIC(model_4))
+sic_m <- c(BIC(model_1),BIC(model_2),BIC(model_3),BIC(model_4))
+a_b_m <- data.frame(aic_m,sic_m)
+colnames(a_b_m) <- c("AIC", "SIC")
+rownames(a_b_m) <- c("Model 1", "Model 2", "Model 3", "Model 4")
+a_b_m
+```
+
+# **Answer - Part 4**
+
+As observed, the model predicted sales in a increasing pattern as already observed from the plot of the time series. Therefore, it may be suggesting a acceptable level of accuracy. 
+
+```{r forecast, include=TRUE, message=FALSE, warning=FALSE}
+time_2015 <- data.frame(Time=c(337,338,339,340,341,342,343,344,345,346,347,348))
+predictions <- predict(model_1, newdata=time_2015,interval='prediction')
+or_sell_p <- exp(predictions)
+or_sell_p
+```
+
+
+
+
+
+
+
+
+
+
+
+

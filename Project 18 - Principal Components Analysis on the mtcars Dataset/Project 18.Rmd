@@ -1,0 +1,99 @@
+---
+title: "PCA on the mtcars Dataset"
+author: "Danilo Zavarize"
+date: "June 9, 2022"
+output: html_document
+---
+
+## For the data set `mtcars` within R:
+
+### I) Perform PCA on the centered data set without the "mpg" variable.
+
+```{r Q1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+# Calling Data
+mt.cars <- datasets::mtcars
+
+# Calculating PCA
+mtcars.pca <- prcomp(mt.cars[,c(2:7,10,11)], center = TRUE, scale. = TRUE)
+print(summary(mtcars.pca), digits=3)
+
+# Loadings
+print(mtcars.pca$rotation, digits=3)
+```
+
+The variables "vs" and "am" were also taken out because they are categorical variables and PCA works best with numerical data. Thus, as observed, the PC1 explains most of the variability in the data set (58%), followed by PC2 (26%), and the others together explain less than what was observed for PC2. By the Kaiser criterion, which considers eigenvalues above 1 as representative, we have that PC1 and PC2 are the main ones, explaining together about 86.1% of the variation in the entire data set which is pretty much accurate. In these terms, we have PC1 primarily measuring the effects of "cyl" and "disp", while PC2 primarily measures the effects of "gear", "qsec", "am", and "carb".
+
+### II) Plot the scree plot and the bi-plot of the PCA results. Describe the findings from both plots.
+
+```{r Q2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.align='center', fig.height=10, fig.width=10}
+# Packages
+library(tidyverse)
+library(ggplot2)
+
+# Bi-Plot
+biplot(mtcars.pca, 
+       scale = 0, 
+       xlim=c(-4, 4), 
+       ylim=c(-4, 4),
+       cex = c(1, 1),
+       expand = 1.5,
+       xlab = "PC1",
+       ylab = "PC2")
+
+# Scree Plot
+qplot(c(1:8), mtcars.pca$sdev^2/sum(mtcars.pca$sdev^2)) + 
+  geom_line(size=1) + 
+  labs(title="Scree Plot of the PCA", 
+       x="Principal Components",
+       y="Variance Explained") +
+  xlim(1,10) +
+  ylim(0,1) +
+  scale_x_continuous(breaks = seq(1, 10, by = 1)) + 
+  scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
+  theme(plot.title=element_text(size=20,
+                                face="bold",
+                                hjust=0.5,
+                                lineheight=1.2),
+        axis.title.x=element_text(size=15),
+        axis.title.y=element_text(size=15),
+        axis.text.x=element_text(size=15),
+        axis.text.y=element_text(size=15))
+```
+
+As observed, we can observe from the bi-plot each of the 32 car models represented in a simple two-dimensional space from the bi-plot. The car models that are close to each other on the plot have similar data patterns in regards to the variables in the original data set. There is a clear organization of the variables into four sections, where the first comprises "vs" and "qsec", the second comprises "drat", "am", and "gear", the third comprises "carb" and "hp", and the fourth comprises "wt", "disp", and "cyl". We can see that about 14 of the 32 models are more highly associated to fourth section than others, 7 are more related to the first section, and the rest are quite spread out around the other sections. Some highlights can be drawn, for example, about the model Duster 360 which is quite close to "cyl" compared to the model Honda Civic that is on the opposite side. Overall, we have a majority of models associated to features such as "wt", "disp", and "cyl" than any other feature present on the data set. Additionally, as pointed out previously, the scree plot suggests that PC1, PC2, and PC3 together explain the majority of the variance in the data set.
+
+### III) What fraction of total variation is explained by the 1st PC? Which variables have top 3 positive and negative loadings on the 1st PC? Describe your findings.
+
+As observed from the outputs from Question 1, the total fraction of variation explained by PC1 is 58%. The variables in the top 3 of positive loadings in PC1 are "cyl" (0.40), "disp" (0.40), and "wt" (0.37), while the top 3 negative loadings in PC1 are "qsec" (-0.22), "gear" (-0.22), and "am" (-0.25). That all means that an increase in PC1 is associated to a increase in "cyl", "disp", and "wt", while an increase in "qsec", "gear", and "am" are associated to a decrease in PC1.
+
+### IV) Calculate correlation between "mpg" variable and all PC's. 
+
+```{r Q4, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+# Correlation with "mpg"
+print(cor(mtcars$mpg, mtcars.pca$x), digits = 2)
+```
+
+As observed, the variable "mpg" is highly negatively correlated to PC1 rather than any other of the PC's. A correlation of 0.5 (either directions) is considered significant, thus, "mpg" is significantly correlated to only the first principal component.
+
+### V) State one conclusion from your findings from question III and IV.
+
+```{r Q5, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+
+# Modeling
+fit_1 <- lm(mpg ~ ., data = mtcars[,-c(9,10)])
+components <- cbind(mpg = mtcars[, "mpg"], mtcars.pca$x[, 1:2]) %>% as.data.frame()
+fit_2 <- lm(mpg ~ ., data = components)
+
+# Models
+summary(fit_1)
+summary(fit_2)
+
+# Adjusted R² Values
+summary(fit_1)$adj.r.squared
+summary(fit_2)$adj.r.squared
+```
+
+To help us reach a conclusion, we perform a linear regression comparing in terms of adjusted R² all the components of the data set into a model and both of the chosen PCs into another model. Any increase in adjusted R² will help to determine the impact of either cases on "mpg". Therefore, as observed from these last outputs, barely any change happened to the adjusted R² value (from 0.805 to 0.814), which leads us to conclude that using all the variables or the PCs as predictors of "mpg" have basically the same impact. The large value of R² links directly to the high correlation found between the PCs and mpg, as well as it links to the multiple correlation of all variables in `mtcars` (excluding "vs" and "am") with "mpg". It also evident from the model with components that PC1 is the best measure for "mpg", as it present a high correlation with this variable (-0.91), while PC2 presented no significance.

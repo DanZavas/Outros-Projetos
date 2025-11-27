@@ -1,0 +1,208 @@
+---
+title: "Factorial ANOVA and MANOVA on Iris Dataset"
+author: "Danilo Zavarize"
+date: "June 1, 2022"
+output: html_document
+---
+
+## **Question 1**
+
+### State the formula for a factorial ANOVA model with 1 dependent variable Y and 3 factors A, B and C:
+
+### **a.** With no interaction (main effects only)
+
+![](Fig1.png)
+
+### **b.** With full interaction
+
+![](Fig2.png)
+
+## **Question 2**
+
+### For the data set `iris` in R, fit a MANOVA model for the dependent variables "Sepal.Length" and "Sepal.Width" against "Species". Report both the ANOVA and MANOVA summary of the model fit.
+
+Since there is only one factor variable ("Species"), this is then a One-Way MANOVA.
+
+-   Therefore, we claim the following hypotheses:
+
+    H~0~: There is no significant difference of means across species for either sepal length or sepal width (𝛍Setosa = 𝛍Versicolor = 𝛍Virginica)
+
+    H~1~: At least one of either sepal width or sepal length means differ by species type (𝛍i ≠ 𝛍j)
+
+-   Then, the significance level:
+
+    ⍺ = 0.05 or 95% confidence level.
+
+-   Then, we check the assumptions:
+
+    ```{r assump, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    # Calling and Checking Data
+    head(datasets::iris)
+
+    # Checking the Assumptions
+
+    ## 1) Univariate Normality
+    library(rstatix)
+    iris %>% group_by(Species) %>% shapiro_test(Sepal.Length, Sepal.Width)
+
+    ## 2) Multivariate Normality
+    library(mvnormalTest)
+    mardia(iris[, c("Sepal.Length", "Sepal.Width")])$mv.test
+
+    ## 3) Homogeneity of the Variance-Covariance Matrices
+
+    library(heplots)
+    boxM(Y = iris[, c("Sepal.Length", "Sepal.Width")], group = iris$Species)
+
+    ## 4) Homogeneity of Variances
+    library(car)
+    leveneTests(iris[,1:2], iris$Species, center=mean)
+
+    ## 5) Multivariate Outliers
+    m_o <- mahalanobis_distance(data = iris[, c("Sepal.Length", "Sepal.Width")])$is.outlier
+    table(m_o)
+
+    ## 6) Linearity by Group
+    library(gridExtra)
+    library(ggplot2)
+    p1 <- iris  %>% group_by(Species) %>% filter(Species == "setosa") %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + ggtitle("Species: Setosa")
+    p2 <- iris  %>% group_by(Species) %>% filter(Species == "versicolor") %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + ggtitle("Species: Versicolor")
+    p3 <- iris  %>% group_by(Species) %>% filter(Species == "virginica") %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + ggtitle("Species: Virginica")
+     
+    grid.arrange(p1, p2, p3, ncol=3)
+
+    ## 7) Multicollinearity
+    cor.test(x = iris$Sepal.Length, y = iris$Sepal.Width, method = "pearson")$estimate
+    ```
+
+    As observed, a pre-check of the assumption of normality (univariate) first indicated that, overall, data follows a normal distribution (p \> 0.05). In the context of MANOVA, the multivariate normality test (for both dependent variables simultaneously) would then present the same outcome (skewness/kurtosis test with p \> 0.05). To check whether variance-covariance matrices are equal for each combination formed by each group in the independent variable, there was conducted a Box's M test which accused a p-value smaller than the test standard of p \> 0.001 thus violating this assumption. From that, a Levene's homogeneity of variances test indicated that the issue relies on Sepal.Length data (i.e., variances across species are not homogeneous for this variable). Following, the assumption of multivariate outliers was checked from the Mahalanobis test which returned n = 150 "FALSE" arguments (the size of the data set) thus meaning that none of the observations are outliers. Then, to check the assumption of linearity by group, there were plotted side-by-side scatterplots and they indicate that for each species there is linearity between the two dependent variables, even though one are more scattered than others. Finally, the assumption of multicollinearity was checked from the correlation coefficient between the two dependent variables, and the value of r = -0.118 suggest a weak negative correlation that means the assumption was met (no high correlation, i.e., r \> 0.9). Overall, from the 7 assumptions only one was not met (homogeneity of variance-covariance matrices) and that means we should report the Pillai's Trace statistic because it is more robust to departures from assumptions.
+
+-   Then, we run the analysis and check effect size:
+
+    ```{r manova, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+    # Running MANOVA
+    my_manova <- manova(cbind(Sepal.Length, Sepal.Width) ~ Species, data = iris)
+    summary(my_manova)
+
+    # Checking Univariate ANOVAs
+    summary.aov(my_manova)
+
+    # Effect Sizes
+    require(effectsize)
+    effectsize::eta_squared(my_manova)
+    ```
+
+    Using a 95% confidence level, we can reject the null hypothesis because p \< 0.0001 and we should claim that at least one of either sepal width or sepal length means differ by species type. The correspondent F test statistic [F(4, 294) = 65.88, p \< 0.0001] suggest the same conclusion. Thus, we should conclude that species types have a statistically significant association with both combined sepal length and sepal width. The measure of effect size (Partial Eta Squared; η~*p*~^2^) is 0.47 and suggests that there is a large effect of species types on both combined sepal length and sepal width, and that effect largeness is free to vary between the minimum of 0.40 and 1.00 with 95% confidence.
+
+-   Finally, we conduct post-hoc test to know were differences appear:
+
+    ```{r post, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+    # Linear Discriminant Analysis - Post-Hoc
+    library(MASS)
+    post_hoc <- lda(iris$Species ~ cbind(iris$Sepal.Length, iris$Sepal.Width), CV=F)
+    post_hoc
+
+    # Plotting Results 
+    plot_lda <- data.frame(iris[, "Species"], lda = predict(post_hoc)$x)
+    ggplot(plot_lda) + geom_point(aes(x = lda.LD1, y = lda.LD2, colour = iris$Species), size = 2)
+    ```
+
+    By observing the post-hoc outputs, the statistics and scatterplots of the linear discriminant analysis discriminated against one species type based on the two dependent variables. That is, while Virginica and Versicolor are quite clustered together, the Setosa species has a significant difference (well separated) as compared to the others. Therefore, we should claim that Virginica and Versicolor species are more similar to each other while Setosa species is not.
+
+## **Question 3**
+
+### In the `genotype` data set in R studio, fit a factorial ANOVA model with full interaction for the dependent variable "Wt" against the factors "Litter" and "Mother". Use the "?`genotype`" function to learn more about the data set.
+
+### **a.** Is this a balanced model? Why or why not?
+
+-   To check this condition we should explore the data set using the recommended variables. For that, we should do:
+
+    ```{r balance, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    ?genotype
+    head(MASS::genotype)
+    table(genotype$Litter, genotype$Mother)
+    ```
+
+    As observed, multiple combinations of levels from both variables have different sizes thus this not a balanced design.
+
+### **b.** Make a box plot of the dependent variable against factors. What trends do you observe?
+
+```{r boxplot, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.align='center', fig.width=10}
+plot1 <- ggplot(genotype,
+                aes(x=as.factor(Mother),
+                    y=as.numeric(Wt),
+                    fill=Litter)) + 
+  geom_boxplot(outlier.colour="black", 
+               outlier.shape=1,
+               outlier.size=4,
+               na.rm = TRUE) + 
+  theme_classic() + 
+  labs(title="Distribution of Litter Weight Gain by Mother's and Litter's Genotypes", 
+       x="Genotype of the Foster Mother", 
+       y = "Litter Average Weight (g)") + 
+  theme(text = element_text(size=14),
+        panel.border = element_rect(color = "black",
+                                    fill = NA,
+                                    size = 1), 
+        plot.title = element_text(face = "bold", 
+                                  size = 16),
+        axis.text.x = element_text(size=14, color="black"),
+        axis.text.y = element_text(size=14, color="black"));plot1
+```
+
+As observed from the two-way boxplot, there is a clear trend of different variances in weight gain from mother's genotypes A through J. That is, the distribution of litter weight gain foster feeding mother carrying genotype A shows higher variability than foster feeding mothers with genotype B, I, and J. Expressive differences in litter weight gain seem to also be present for such genotype up to the point that for genotype J these differences seem to not evidently occur.
+
+### **c.** Report the ANOVA results and state your conclusions from the analysis.
+
+-   First, we state the hypotheses:
+
+    **H~0~:**
+
+    There is no difference in mean weight gain across foster feeding mother's genotypes;
+
+    There is no difference in mean weight gain across litter's genotypes;
+
+    There is no difference in mean weight gain from the interaction across foster feeding mother's genotypes and litter's genotypes;
+
+    **H~1~:**
+
+    There is difference in mean weight gain across foster feeding mother's genotypes;
+
+    There is difference in mean weight gain across litter's genotypes;
+
+    There is difference in mean weight gain from the interaction across foster feeding mother's genotypes and litter's genotypes;
+
+-   Then, we establish the significance level:
+
+    ⍺ = 0.05 or 95% confidence.
+
+-   Now, we check the main assumptions:
+
+    ```{r assump1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+    # Homogeneity of Variances
+    leveneTest(Wt ~ Mother*Litter, data = genotype)
+
+    # Normality
+    res1 <- aov(Wt ~ Mother*Litter, data = genotype)
+    shapiro.test(residuals(res1))
+    ```
+
+-   Then, we run the analysis and check the effect sizes:
+
+    ```{r aov, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    res1 <- aov(Wt ~ Mother*Litter, data = genotype)
+    Anova(res1, type="III")
+    effectsize(res1)
+    ```
+
+-   Finally, we run the post-hoc test:
+
+    ```{r post2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    TukeyHSD(res1, which="Mother")
+    TukeyHSD(res1, which="Litter")
+    ```
+
+From the assumptions checking we notice that the main ones were met thus the analysis could be safely and logically conducted/interpreted. Using a 95% confidence level, the null hypothesis for factors "Mother" (p = 0.021) and "Litter" (p = 0.020) should be rejected and we may claim that there is difference in mean weight gain across foster feeding mother's genotypes, and that there is difference in mean weight gain across litter's genotypes. Given the presence of interaction and the unbalanced design, there was reported the Type III sum of squares for the two-way ANOVA as it is more robust for such cases. As observed, from the two significant factors we notice a medium effect size only for foster feeding mother's genotype (0.24), whereas litter genotype seem to have little influence (0.03). Since significant differences were detected for both factors, a post-hoc test was required to identify which mother's or litter's genotypes differed from each other. Thus, by checking the Tukey HSD test output with Bonferroni-adjusted p-values we conclude that foster feeding mother's genotypes B and J present the largest and the only significant difference of mean weight gain (d = -10.02, p = 0.004, 95% C.I. [-17.32, -2.72]). However, even though significant difference across litter's genotypes was accused by the two-way ANOVA, the required p-value adjustment for multiple comparisons in the Tukey HSD test led to none of the litter's genotypes actually differing in mean weight gain at the chosen standard level of confidence.

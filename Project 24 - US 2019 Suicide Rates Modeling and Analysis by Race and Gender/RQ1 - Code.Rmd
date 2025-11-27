@@ -1,0 +1,108 @@
+---
+title: "RQ1 - Statistic Analysis"
+output: html_document
+date: "August 16, 2022"
+---
+
+#### ENTERING DATA
+
+```{r data, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+setwd("C:/Users/profz/Desktop/my_work")
+library(readxl)
+suicide <- read_excel("Gender_Cleaned.xlsx")
+```
+
+#### OBTAINING BOXPLOTS
+
+```{r boxplot, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.height=5, fig.width=8}
+library(ggplot2)
+ggplot(suicide, 
+       aes(x=Gender, 
+           y=Rate)) + 
+  geom_boxplot(fill='#A4A4A4', color="black") +
+  theme_bw(base_size = 14) + 
+  labs(title="Distribution of Suicide Rates by Gender in the U.S.", 
+       x="Gender", 
+       y = "Suicide Rates (per 100,000 Habitants)") +
+  geom_text(x="Female", y=11, label="M = 5.27")+
+  geom_text(x="Female", y=10, label="SD = .85")+
+  geom_text(x="Female", y=9, label="95% C.I. (5.03, 5.52)")+
+  geom_text(x="Female", y=8, label="W = .929, p < .01")+
+  geom_text(x="Male", y=13, label="M = 17.95")+
+  geom_text(x="Male", y=12, label="SD = 2.43")+
+  geom_text(x="Male", y=11, label="95% C.I. (17.26, 18.65)")+
+  geom_text(x="Male", y=10, label="W = .962, p > .05")
+```
+
+#### DESCRIPTIVE STATISTICS
+
+```{r DS, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+library(dplyr)
+suicide %>%
+  group_by(Gender) %>%
+  summarise(Mean = mean(Rate),
+            SD = sd(Rate),
+            `Lower 95% CI`=Mean+qt(.025, 49)*(SD/sqrt(50)),
+            `Upper 95% CI`=Mean-qt(.025, 49)*(SD/sqrt(50))) 
+```
+
+#### TESTING NORMALITY
+
+```{r normality, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+suicide %>%
+  group_by(Gender) %>%
+  summarise(Statistic = shapiro.test(Rate)$statistic,
+            `P-value` = shapiro.test(Rate)$p.value)
+```
+
+#### CONDUCTING REGRESSION
+
+```{r reg, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+library(jtools)
+# Females
+suicide_f <- subset(suicide, Gender=="Female")
+m_f <- lm(Rate~Time, data=suicide_f)
+summ(m_f, confint = T, digits = 3)
+
+# Males
+suicide_m <- subset(suicide, Gender=="Male")
+m_m <- lm(Rate~Time, data=suicide_m)
+summ(m_m, confint = T, digits = 3)
+```
+
+#### RESIDUAL DIAGNOSTICS
+
+```{r residuals, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+library(lmtest)
+
+# Females
+shapiro.test(m_f$residuals)
+bptest(m_f)
+
+# Males
+shapiro.test(m_m$residuals)
+bptest(m_m)
+```
+
+#### SCATTERPLOT
+
+```{r scatter, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.height=7, fig.width=8}
+plot(suicide$Year, suicide$Rate,
+     pch = 19,
+     col = factor(suicide$Gender),
+     ylim=c(0,25),
+     xlab="Years",
+     ylab="Suicide Rates (per 100,000 habitants)",
+   main="Suicide Rates Over Time in the U.S. (1970 - 2019)")
+abline(lm(Rate ~ Year, data=suicide_m), col = 2, lwd = 2)
+text(1995, 13,  paste("F(1, 48) = 5.96, p = .018, R² = .110"), col="#F64A8A")
+text(1995, 11,  paste("B = .055, t(48) = 2.44, p = .018, 95% C.I. (.010, .101)"), col="#F64A8A")
+
+abline(lm(Rate ~ Year, data=suicide_f), col = 1, lwd = 2)
+text(1995, 3,  paste("F(1, 48) = 8.14, p = .006, R² = .145"), , col="black")
+text(1995, 1,  paste("B = -.022, t(48) = -2.85, p < .05, 95% C.I. (-.038, -.007)"), col="black")
+legend("topleft",
+       legend = levels(factor(suicide$Gender)),
+       pch = 19,
+       col = factor(levels(factor(suicide$Gender))))
+```

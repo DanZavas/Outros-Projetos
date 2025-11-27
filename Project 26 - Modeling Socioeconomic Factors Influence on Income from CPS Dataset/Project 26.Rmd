@@ -1,0 +1,242 @@
+---
+title: "CPS_DATA_EXERCISE"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+### Setting Up the Environment
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Part 3 - Importing Data
+
+```{r Q3, include=TRUE, message=FALSE, warning=FALSE}
+# Import the dataset
+CPSDATA <- read.csv("CPSDATA.csv")
+
+# View column names and data types
+str(CPSDATA)
+
+# Ensure numeric columns are numeric
+CPSDATA[] <- lapply(CPSDATA, function(x) {
+  if (is.character(x) && all(grepl("^[0-9]+$", x))) {
+    as.numeric(x)
+  } else {
+    x
+  }
+})
+```
+
+### Part 4 - SEX Variable
+
+```{r Q4, include=TRUE, message=FALSE, warning=FALSE}
+# Generate new column 'FEMALE'
+CPSDATA$FEMALE <- ifelse(CPSDATA$SEX == 2, 1, 0)
+head(CPSDATA$FEMALE)
+```
+
+### Part 5 - RACE Variable
+
+```{r Q5, include=TRUE, message=FALSE, warning=FALSE}
+# Generate new column 'NONWHITE'
+CPSDATA$NONWHITE <- ifelse(CPSDATA$RACE != 100 & CPSDATA$RACE != 999, 1, 0)
+head(CPSDATA$NONWHITE)
+```
+
+### Part 6 - MARST Variable
+
+```{r Q6, include=TRUE, message=FALSE, warning=FALSE}
+# Generate new column 'MARRIED'
+CPSDATA$MARRIED <- ifelse(CPSDATA$MARST == 1, 1, 0)
+head(CPSDATA$MARRIED)
+```
+
+### Part 7 - EDUC99 Variable
+
+```{r Q7, include=TRUE, message=FALSE, warning=FALSE}
+# Generate new column 'HIGHSCHOOL'
+CPSDATA$HIGHSCHOOL <- ifelse(CPSDATA$EDUC == 18, 1, 0)
+head(CPSDATA$HIGHSCHOOL)
+```
+
+### Part 8 - INCWAGE Variable
+
+```{r Q8, include=TRUE, message=FALSE, warning=FALSE}
+# Replace 99999998 and 99999999 with NA in INCWAGE
+CPSDATA$INCWAGE[CPSDATA$INCWAGE %in% c(99999998, 99999999)] <- NA
+head(CPSDATA$INCWAGE)
+```
+
+### Part 9 - REGION Variable
+
+```{r Q9, include=TRUE, message=FALSE, warning=FALSE}
+# Recode Region variable
+CPSDATA$REGION <- ifelse(CPSDATA$REGION %in% c(11, 12), 1,
+                         ifelse(CPSDATA$REGION %in% c(21, 22), 2,
+                         ifelse(CPSDATA$REGION %in% c(31, 32, 33), 3, 4)))
+head(CPSDATA$REGION)
+```
+
+### Part 10 - DROP OLD VARIABLES
+
+```{r Q10, include=TRUE, message=FALSE, warning=FALSE}
+# Drop columns SEX, RACE, MARST, EDUC99
+CPSDATA <- subset(CPSDATA, select = -c(SEX, RACE, MARST, EDUC99))
+head(CPSDATA)
+```
+
+### Part 11 - DESCRIPTIVE STATISTICS
+
+```{r Q11, include=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+# Continuous variables: Compute mean, standard deviation, min, and max
+continuous_vars <- CPSDATA %>%
+  select(INCWAGE) %>% # Add other continuous variables if needed
+  summarise(
+    Mean = mean(INCWAGE, na.rm = TRUE),
+    SD = sd(INCWAGE, na.rm = TRUE),
+    Min = min(INCWAGE, na.rm = TRUE),
+    Max = max(INCWAGE, na.rm = TRUE)
+  )
+
+# Transpose continuous_vars for better display with statistics as rows
+continuous_vars <- data.frame(
+  Statistic = c("Mean", "SD", "Min", "Max"),
+  INCWAGE = c(continuous_vars$Mean, continuous_vars$SD, continuous_vars$Min, continuous_vars$Max)
+)
+
+print("Descriptive statistics for continuous variables:")
+print(continuous_vars)
+
+# Categorical variables: Compute frequency and proportion
+categorical_vars <- CPSDATA %>%
+  select(FEMALE, NONWHITE, MARRIED, HIGHSCHOOL, REGION)
+
+# Create a summary table for each categorical variable
+categorical_stats <- lapply(names(categorical_vars), function(var) {
+  freq_table <- table(categorical_vars[[var]], useNA = "ifany")
+  prop_table <- prop.table(freq_table)
+  
+  # Combine frequency and proportion into a data frame
+  data.frame(
+    Variable = var,
+    Category = names(freq_table),
+    Frequency = as.numeric(freq_table),
+    Proportion = round(as.numeric(prop_table), 4) # Rounded for better readability
+  )
+})
+
+# Combine all categorical summaries into a single data frame
+categorical_stats_df <- do.call(rbind, categorical_stats)
+
+print("Descriptive statistics for categorical variables:")
+print(categorical_stats_df)
+```
+
+### Part 12 - INCWAGE Fractions
+
+```{r Q12, include=TRUE, message=FALSE, warning=FALSE}
+# Adjust zero values in INCWAGE
+CPSDATA$INCWAGE <- ifelse(CPSDATA$INCWAGE == 0, 0.01, CPSDATA$INCWAGE)
+```
+
+### Part 13 - MODEL 1
+
+```{r Q13, include=TRUE, message=FALSE, warning=FALSE}
+# Log-transform INCWAGE and estimate the first model
+library(sandwich)
+library(lmtest)
+model1 <- lm(log(INCWAGE) ~ FEMALE + NONWHITE + MARRIED + HIGHSCHOOL, data = CPSDATA)
+
+# Heteroskedasticity-robust standard errors
+coeftest(model1, vcov = vcovHC(model1, type = "HC"))
+```
+
+### Part 14 - MODEL 2
+
+```{r Q14, include=TRUE, message=FALSE, warning=FALSE}
+# Estimate the second model with interaction
+model2 <- lm(log(INCWAGE) ~ FEMALE + NONWHITE + FEMALE:NONWHITE + MARRIED + HIGHSCHOOL, data = CPSDATA)
+
+# Heteroskedasticity-robust standard errors
+coeftest(model2, vcov = vcovHC(model2, type = "HC"))
+```
+
+### Part 15 - MODEL 3
+
+```{r Q15, include=TRUE, message=FALSE, warning=FALSE}
+# Create region dummies
+CPSDATA$R2 <- ifelse(CPSDATA$REGION == 2, 1, 0)
+CPSDATA$R3 <- ifelse(CPSDATA$REGION == 3, 1, 0)
+CPSDATA$R4 <- ifelse(CPSDATA$REGION == 4, 1, 0)
+
+# Estimate the third model
+model3 <- lm(log(INCWAGE) ~ FEMALE + NONWHITE + FEMALE:NONWHITE + MARRIED + HIGHSCHOOL + R2 + R3 + R4, data = CPSDATA)
+
+# Heteroskedasticity-robust standard errors
+coeftest(model3, vcov = vcovHC(model3, type = "HC"))
+```
+
+### Part 16 - Explanation for excluding the first region
+
+```{r Q16, include=TRUE, message=FALSE, warning=FALSE}
+# Explanation:
+# Excluding the first region avoids perfect multicollinearity, commonly known as the "dummy variable trap."
+# By excluding one region, the model can estimate the effects of the other regions relative to the excluded region.
+```
+
+### Part 17 - Present results in a table
+
+```{r Q17, include=TRUE, message=FALSE, warning=FALSE}
+# Combine results into a table
+library(stargazer)
+stargazer(model1, model2, model3,
+          type = "text",
+          title = "Regression Results",
+          column.labels = c("Model 1", "Model 2", "Model 3"),
+          covariate.labels = c("FEMALE", "NONWHITE", "FEMALE:NONWHITE", "MARRIED", "HIGHSCHOOL", "R2", "R3", "R4"),
+          dep.var.labels = "Log(INCWAGE)")
+```
+
+
+### **Interpretation**
+
+The regression analysis (Model 3) examines the effects of gender, race, marital status, education, and region on the natural logarithm of income (`log(INCWAGE)`) using heteroskedasticity-robust standard errors. The model includes interaction terms and regional dummy variables to account for potential differences across groups and regions.
+
+### Key Findings:
+1. **Gender**:
+   - The coefficient for `FEMALE` is significant (β = -1.612, SE = 0.050, p < .01), indicating that women, on average, have 161.2% lower income compared to men, holding all other variables constant.
+
+2. **Race**:
+   - The coefficient for `NONWHITE` is significant (β = -0.461, SE = 0.075, p < .01). This suggests that nonwhite individuals have 46.1% lower income than white individuals, all else being equal.
+
+3. **Gender × Race Interaction**:
+   - The interaction term `FEMALE:NONWHITE` is significant (β = 1.535, SE = 0.044, p < .01), indicating that the income gap associated with gender is mitigated for nonwhite women.
+
+4. **Marital Status**:
+   - Being married (`MARRIED`) is associated with a significant increase in income (β = 2.553, SE = 0.161, p < .01), suggesting that married individuals have 255.3% higher income on average compared to unmarried individuals.
+
+5. **Education**:
+   - The coefficient for having a high school diploma (`HIGHSCHOOL`) is significant (β = 0.208, SE = 0.075, p < .01), indicating that high school graduates earn 20.8% more than those without a high school diploma.
+
+6. **Region**:
+   - The regional dummy variables reveal significant income disparities across regions:
+     - Individuals in Region 2 (`R2`) earn 51.2% less than those in Region 1 (baseline) (β = -0.512, SE = 0.066, p < .01).
+     - Individuals in Region 3 (`R3`) earn 23.0% less than those in Region 1 (β = -0.230, SE = 0.069, p < .01).
+     - Individuals in Region 4 (`R4`) earn 82.0% more than those in Region 1 (β = 0.820, SE = 0.103, p < .01).
+
+7. **Constant Term**:
+   - The intercept is significant (β = 4.665, SE = 0.066, p < .01), representing the baseline `log(INCWAGE)` for men, white individuals, unmarried, without a high school diploma, and residing in Region 1.
+
+### Model Performance:
+- **R²**: The model explains 2.5% of the variance in `log(INCWAGE)`.
+- **F-statistic**: The overall model is statistically significant (F(8, 116,641) = 372.34, p < .01), suggesting that the predictors collectively have a significant effect on income.
+
+### Conclusion:
+Model 3 highlights significant disparities in income associated with gender, race, marital status, education, and geographic region. These findings emphasize the interplay of demographic and regional factors in shaping income distributions.
+

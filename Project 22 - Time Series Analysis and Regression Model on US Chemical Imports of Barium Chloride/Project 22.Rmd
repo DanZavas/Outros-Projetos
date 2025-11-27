@@ -1,0 +1,167 @@
+---
+title: "Time Series Analysis and Regression Model on US Chemical Imports of Barium Chloride"
+author: "Danilo Zavarize"
+date: "August 10, 2022"
+output: html_document
+---
+
+#### **The imports data consists of information on chemical imports of barium chloride into the USA for a year. The first observation on record is February 2005. (Hint: don\'t include the columns \"t\" and the \"month\" dummy variables).**
+
+#### 1) Create a ts object from the data and make a trend-season decomposition plot (stl) on imports field assuming that the import is periodic in nature based on business cycles.
+
+-   **STEP 1 - Import Data**
+
+    ```{r q1st1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    library(readxl)
+    imports.df <- read_excel("imports-1.xlsx")
+    head(imports.df)
+    ```
+
+-   **STEP 2 - ts Object**
+
+    ```{r q1st2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    imports.ts <- ts(imports.df$imports, start = c(2005, 2), freq = 12)
+    ```
+
+-   **STEP 3 - Trend-Season Decomposition**
+
+    ```{r q1st3, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=10, fig.align='center'}
+    imports.stl = stl(imports.ts, s.window="periodic")
+    plot(imports.stl)
+    ```
+
+-   **STEP 4 - Comments**
+
+    [As observed from the time series in the first plot, we notice a pattern that suggests non-constant seasonality over time. That is, as the imports increase in magnitude the seasonal variations increase as well. Therefore, the decomposition should be seen from the perspective of a multiplicative model. Having that in mind, we shall observe the trend. It is showing an increase over time, as expected, but that increase was affected by fluctuations on imports - which may be the affect of economic factors. The remainder plot evidences it quite well by showing larger remainders associated to the fluctuations seen from the trend.]{style="color: red"}
+
+#### 2) Fit a regression model on imports using trend and season as covariates. Check the residual diagnostics and summarize the regression findings.
+
+-   **STEP 1 - Getting Trend and Season Variables**
+
+    ```{r q2st1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    seasonal.v <- imports.stl$time.series[,1]
+    trend.v <- imports.stl$time.series[,2]
+    ```
+
+-   **STEP 2 - Building the Model**
+
+    ```{r q2st2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    library(jtools)
+    model.reg <- lm(imports~seasonal.v+trend.v, data=imports.df)
+    summ(model.reg, confint = T, digits = 4, vifs = T)
+    ```
+
+-   **STEP 3 - Evaluating Diagnostics**
+
+    ```{r q2st3, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=10, fig.align='center'}
+    par(mfrow = c(2, 2))
+    plot(model.reg)
+    ```
+
+-   **STEP 4 - Comments**
+
+    [By checking the regression table we notice a statistically significant model at the 95% confidence level; F(2, 128) = 57.36, p \< 0.0001, adj. R² = 0.4644. This means that trend and season together as covariates in the model explained about 46.44% of the variability in chemical imports of barium chloride into the USA from February 2005 to December 2015. Specifically, while holding constant the effect of seasonality, a 1-unit change in trend statistically significantly increased the imports by 1.052 and the true increase is free to vary between 0.8427 and 1.2612 with 95% confidence. On the other hand, while holding constant the effect of trend, a 1-unit increase in seasonality increased the imports by 0.9886 and the true increase is free to vary between 0.4582 and 1.5189 with 95% confidence. The VIF values around 1 suggest no issues with multicollinearity. The model residuals diagnostic plots, however, indicate that the model has issues with non-normal and non-homoscedastic residuals by showing multiple outliers and influential points. Therefore, a multiple linear model seems not suitable.]{style="color: red"}
+
+#### 3) Fit a regression model on imports using all other variables (excluding t and month dummy variables) and display the summary. Fit variable or variables are significant predictors of imports?
+
+-   **STEP 1 - Fit Model**
+
+    ```{r q3st1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    gasprdi_sc <- imports.df$gasprdi/10000000
+    model.reg2 <-lm(imports~chmpi+gasprdi_sc+rtwex+policychnge, data=imports.df)
+    summ(model.reg2, confint = T, digits = 3, vifs = T)
+    ```
+
+-   **STEP 2 - Diagnostics**
+
+    ```{r q3st2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=10, fig.align='center'}
+    par(mfrow = c(2, 2))
+    plot(model.reg2)
+    ```
+
+-   **STEP 3 - Comments**
+
+    [Important Note: The variable `gasprdi` was re-scaled by dividing its values by 10,000,000 to match the scale of the other variables and thus have a more meaningful coefficient in the model. Now, speaking about the model itself, by checking the regression table we notice a statistically significant model at the 95% confidence level; F(4, 126) = 10.91, p \< 0.001, adj. R² = 0.234. This means that `chmpi`, `gasprdi_sc`, `rtwex`, and `policychnge` together as covariates in the model explained about 23.40% of the variability in chemical imports of barium chloride into the USA from February 2005 to December 2015. Specifically, while holding constant the effect of `gasprdi_sc`, `rtwex`, and `policychnge`, a 1-unit change in `chmpi` statistically significantly increased the imports by 11.91 and the true increase is free to vary between 8.062 and 15.759 with 95% confidence. On the other hand, no significant effect of `gasprdi_sc`, `rtwex`, and `policychnge` was found at the same level of confidence (p-values \> 0.05). The VIF values between 1 and 2 suggest acceptable issues with multicollinearity. The model residuals diagnostic plots, however, indicate that this model also has issues with non-normal and non-homoscedastic residuals. Therefore, a multiple linear model seems not suitable.]{style="color: red"}
+
+#### 4) Fit a new regression model using the significant variable or variables from Q3 (along with season and trend). Create a newdata object that samples 10 values from the significant variables from the existing data and forecast imports at those values. Make a plot of the forecast.
+
+-   **STEP 1 - Creating the New Sampled Data**
+
+    ```{r q4st1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    new.data <- as.data.frame(cbind(trend.v, seasonal.v, imports.df$chmpi, imports.df$imports))
+    df <- sample(1:nrow(new.data),10)
+    forecast.data <- as.data.frame(new.data[df,])
+    colnames(forecast.data) <- c("trend.v", "seasonal.v", "chmpi", "imports")
+    ```
+
+-   **STEP 2 - Fitting the Model**
+
+    ```{r q4st2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    model.reg3 <- lm(imports~trend.v+seasonal.v+chmpi, data=imports.df)
+    summ(model.reg3, confint = T, digits = 3, vifs = T)
+    ```
+
+-   **STEP 3 - Model Diagnostics**
+
+    ```{r q4st3, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=10, fig.align='center'}
+    par(mfrow = c(2, 2))
+    plot(model.reg3)
+    ```
+
+-   **STEP 4 - Forecasting**
+
+    ```{r q4st4, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+    forecasting.imp <- as.data.frame(predict(model.reg3, newdata=forecast.data))
+    forecasting.imp
+    colnames(forecasting.imp) <- c("Forecast")
+    plot(x=forecasting.imp$Forecast, y=forecast.data$imports,
+         xlab='Predicted Values',
+         ylab='Actual Values',
+         main='Predicted vs. Actual Values')
+    abline(a=0, b=1)
+    ```
+
+-   **STEP 5 - Comments**
+
+    [By checking the regression table we notice a statistically significant model at the 95% confidence level with trend, seasonality, and chmpi as covariates; F(3, 127) = 38.29, p \< 0.0001, adj. R² = 0.463. This means that together trend, seasonality, and chmpi explained about 46.3% of the variability in imports. Only trend and seasonality remained statistically significant, as we can see that adding a significant variable from another model to this model resulted in it being no significant together with the other two. Specifically, we have now that a 1-unit increase in trend is associated with an increase by 1.157 in imports, free to vary between 0.810 and 1.503 with 95% confidence. For seasonality, on the other hand, a 1-unit increase in it is estimated to increase imports by 0.991, free to vary between 0.459 and 1.522 at the same level of confidence. We can also notice that there are moderate issues with multicollinearity between trend and chmpi, given the VIF values above 2.5. The quality of the model fit is also reflected by its diagnostics, which shows issues with non-normal and non-homoscedastic residuals, as well as multiple outliers and influential points. The forecasting made with the model also reflects its poor quality, as can be seen from the plot of actual vs. predicted values. That is, the values are quite scattered and spaced with regards to the trendline and, therefore, indicate large deviations.]{style="color: red"}
+
+#### 5) Fit a Holt-Winters model (seasonal=multiplicative) on the imports field, report the alpha value and plot the forecast for the next 10 quarters. 
+
+-   **STEP 1 - Fitting Holt-Winters Model**
+
+    ```{r q5st1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+    HW1 <- HoltWinters(imports.ts, seasonal = "multiplicative")
+    HW1
+    ```
+
+-   **STEP 2 - Model Diagnostics**
+
+    ```{r q5st2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+    library(forecast)
+    res.HW1 <- HW1$x - HW1$fitted
+    acf(res.HW1, lag.max=20, na.action=na.pass)
+    Box.test(as.vector(res.HW1), lag=20, type="Ljung-Box")
+    hist(res.HW1)
+    ```
+
+-   **STEP 3 - Model Predicting**
+
+    ```{r q5st3, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+    plot(imports.ts, ylab="Chemical Imports of Barium Chloride", xlim=c(2005,2016))
+    lines(HW1$fitted[,1], lty=2, col="blue")
+    ```
+
+-   **STEP 4 - Forecasting for Next 10 Quarters**
+
+    ```{r q5st4, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+    HW1.pred <- predict(HW1, 40, prediction.interval = TRUE, level=0.95)
+    plot(imports.ts, ylab="Chemical Imports of Barium Chloride", xlim=c(2005,2020), ylim=c(0, 3000))
+    lines(HW1$fitted[,1], lty=2, col="blue")
+    lines(HW1.pred[,1], col="red")
+    lines(HW1.pred[,2], lty=2, col="orange")
+    lines(HW1.pred[,3], lty=2, col="orange")
+    ```
+
+-   **STEP 5 - Comments**
+
+    [As observed, the Holt-Winters model with multiplicative seasonality fits acceptably to the imports data, having a alpha value of approximately 0.067. The model diagnostics, however, suggests some lags outside the limits (blue lines) in the ACF plot and non-normally distributed residuals, which means that the model may not be a very adequate. The last plot contains the the observed imports data in black, the Holt-Winters model prediction in blue, and the forecast for the next 10 quarters in red. The dashed orange lines are the 95% forecasting interval for the forecast data. As observed, the model follows the increasing trend with multiplicative features, but more "shy" seasonality effect compared to the observed data. The 95% confidence forecast intervals, on the other hand, include the observed data which means that this forecast is acceptable.]{style="color: red"}

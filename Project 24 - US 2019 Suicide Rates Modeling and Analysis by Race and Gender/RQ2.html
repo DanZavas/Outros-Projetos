@@ -1,0 +1,2394 @@
+<HTML><HEAD><TITLE>OUTPUT.htm</TITLE><META http-equiv="Content-Type" content="text/html; charset=UTF-8"></HEAD>
+<BODY><p align="left"><html>
+  <head>
+    <style type="text/css">
+      <!--
+        p { font-family: Monospaced; font-style: normal; text-decoration: none; font-weight: normal; font-size: 14pt; color: 000000 }
+      -->
+    </style>
+    
+  </head>
+  <body>
+    <font size="4" color="#000000" face="Monospaced">GET<br>&#160;&#160;FILE='C:\Users\profz\Desktop\my_work\Data&#160;-&#160;RQ2.sav'.<br>DATASET&#160;NAME&#160;DataSet1&#160;WINDOW=FRONT.<br>SET&#160;LOCALE&#160;=&#160;&quot;en_US&quot;.<br>UNIANOVA&#160;Rate&#160;BY&#160;Decade&#160;Race<br>&#160;&#160;/METHOD=SSTYPE(3)<br>&#160;&#160;/INTERCEPT=INCLUDE<br>&#160;&#160;/POSTHOC=Decade&#160;Race(QREGW)<br>&#160;&#160;/PLOT=PROFILE(Decade&#160;Race&#160;Decade*Race)<br>&#160;&#160;/EMMEANS=TABLES(OVERALL)<br>&#160;&#160;/EMMEANS=TABLES(Decade)&#160;COMPARE&#160;ADJ(BONFERRONI)<br>&#160;&#160;/EMMEANS=TABLES(Race)&#160;COMPARE&#160;ADJ(BONFERRONI)<br>&#160;&#160;/EMMEANS=TABLES(Decade*Race)<br>&#160;&#160;/PRINT=GEF&#160;LOF&#160;ETASQ&#160;HOMOGENEITY&#160;DESCRIPTIVE&#160;PARAMETER<br>&#160;&#160;/CRITERIA=ALPHA(.05)<br>&#160;&#160;/DESIGN=Decade&#160;Race&#160;Decade*Race.</font>
+  </body>
+</html>
+</p><BR><CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Univariate&nbsp;Analysis&nbsp;of&nbsp;Variance</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=480 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Notes</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Output Created</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">16-AUG-2022 15:41:41</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Comments</FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="6" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Input</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Data</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">C:\Users\profz\Desktop\my_work\Data - RQ2.sav</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Active Dataset</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">DataSet1</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Filter</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Weight</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Split File</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N of Rows in Working Data File</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">150</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Missing Value Handling</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Definition of Missing</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">User-defined missing values are treated as missing.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Cases Used</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Statistics are based on all cases with valid data for all variables in the model.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Syntax</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">UNIANOVA Rate BY Decade Race<BR>  /METHOD=SSTYPE(3)<BR>  /INTERCEPT=INCLUDE<BR>  /POSTHOC=Decade Race(QREGW)<BR>  /PLOT=PROFILE(Decade Race Decade*Race)<BR>  /EMMEANS=TABLES(OVERALL)<BR>  /EMMEANS=TABLES(Decade) COMPARE ADJ(BONFERRONI)<BR>  /EMMEANS=TABLES(Race) COMPARE ADJ(BONFERRONI)<BR>  /EMMEANS=TABLES(Decade*Race)<BR>  /PRINT=GEF LOF ETASQ HOMOGENEITY DESCRIPTIVE PARAMETER<BR>  /CRITERIA=ALPHA(.05)<BR>  /DESIGN=Decade Race Decade*Race.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Resources</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Processor Time</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">00:00:02,23</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Elapsed Time</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">00:00:01,36</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<p align="left"><head><style type="text/css">p{color:0;font-family:Monospaced;font-size:14pt;font-style:normal;font-weight:normal;text-decoration:none}</style></head><BR>[DataSet1]&nbsp;C:\Users\profz\Desktop\my_work\Data&nbsp;-&nbsp;RQ2.sav</p><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=388 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Between-Subjects Factors</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN="LEFT" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Value Label</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">4</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=498 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Descriptive Statistics</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="5"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Deviation</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.29</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.17</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.21</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.51</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.56</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2.79</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.25</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.89</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.27</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.49</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.88</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3.47</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.64</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.29</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.08</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.32</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.49</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.07</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3.26</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.71</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.21</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.80</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.05</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.42</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.52</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2.55</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.39</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.79</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.69</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">13.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.75</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.77</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3.21</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.63</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.57</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.51</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.11</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.24</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.96</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3.07</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">150</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=675 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="9" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Case Processing Summary</FONT></TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="#ffffff"><FONT COLOR="#000000">&nbsp</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="6" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Cases</FONT></TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="#ffffff"><FONT COLOR="#000000">&nbsp</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Valid</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Missing</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="#ffffff"><FONT COLOR="#000000">&nbsp</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Percent</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Percent</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Percent</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="15" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Rate</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0.0%</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">100.0%</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=274 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Levene's Test of Equality of Error Variances<SUP>a</SUP></FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="4"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">F</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">df1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">df2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.350</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">14</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">135</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Tests the null hypothesis that the error variance of the dependent variable is equal across groups.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">a. Design: Intercept + Decade + Race + Decade * Race</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=603 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Tests of Between-Subjects Effects</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="7"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Source</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Type III Sum of Squares</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">df</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean Square</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">F</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Partial Eta Squared</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Corrected Model</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1346.11<SUP>a</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">14</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">96.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">239.01</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.961</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Intercept</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">9503.44</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">9503.44</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">23623.27</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.994</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30.81</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">4</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.70</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">19.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.362</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1296.14</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">648.07</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1610.95</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.960</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade * Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">19.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2.40</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.95</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.261</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">54.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">135</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.40</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10903.86</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">150</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Corrected Total</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1400.42</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">149</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">a. R Squared = ,961 (Adjusted R Squared = ,957)</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=565 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lack of Fit Tests</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="7"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Source</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sum of Squares</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">df</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean Square</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">F</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Partial Eta Squared</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lack of Fit</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">0</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Pure Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">54.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">135</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.402</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Estimated&nbsp;Marginal&nbsp;Means</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=327 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1. Grand Mean</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="4"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.96</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.05</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.86</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.06</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>2.&nbsp;Decade</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=388 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Estimates</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="5"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.56</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.33</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.79</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.88</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.11</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.07</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.84</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.30</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.52</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.29</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.75</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.77</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.12</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.54</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">9.00</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=603 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Pairwise Comparisons</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="7"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">(I) Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">(J) Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean Difference (I-J)</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.<SUP>b</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval for Difference<SUP>b</SUP></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.576</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.78</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.15</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.51<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.024</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.98</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.04</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.04</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.43</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.51</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.21<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.68</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.74</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.576</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.78</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.19</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.66</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.27</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.36</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.315</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.11</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.82</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.89<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.36</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.43</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.51<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.024</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.04</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.98</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.19</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.27</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.66</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.55<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.010</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.08</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.02</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.70<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.17</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.23</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.04</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.51</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.43</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.36</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.315</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.82</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.11</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.55<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.010</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.02</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.08</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.25<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-1.72</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.78</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.21<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.74</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.68</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.89<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.43</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.36</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.70<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.23</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.17</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.25<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.16</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.78</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.72</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Based on estimated marginal means</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">*. The mean difference is significant at the .05 level.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">b. Adjustment for multiple comparisons: Bonferroni.</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>3.&nbsp;Race</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=531 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Estimates</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="5"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.63</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.45</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.80</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.15</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.97</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.32</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.11</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.93</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.28</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=793 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Pairwise Comparisons</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="7"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">(I) Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">(J) Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean Difference (I-J)</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.<SUP>b</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval for Difference<SUP>b</SUP></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.52<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.83</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-.21</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-6.48<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-6.79</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-6.17</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.52<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.21</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.83</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-5.96<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-6.27</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">-5.65</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.48<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.17</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.79</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.96<SUP>*</SUP></FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.27</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Based on estimated marginal means</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">*. The mean difference is significant at the .05 level.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">b. Adjustment for multiple comparisons: Bonferroni.</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=556 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Univariate Tests</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="7"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD ALIGN="LEFT" VALIGN="BOTTOM" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sum of Squares</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">df</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean Square</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">F</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Partial Eta Squared</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Contrast</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1296.14</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">648.07</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1610.95</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.960</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">54.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">135</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.40</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="7" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">The F tests the effect of Race. This test is based on the linearly independent pairwise comparisons among the estimated marginal means.</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=595 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="6" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">4. Decade * Race</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="6"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Dependent Variable: Rate<SUP></SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Mean</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Std. Error</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">95% Confidence Interval</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Lower Bound</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Upper Bound</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">4.91</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.70</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.17</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.77</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.57</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.21</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10.81</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.61</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">4.69</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.48</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.89</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.49</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.29</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.25</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">13.05</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.64</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.24</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.04</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.08</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.68</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.48</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.49</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.09</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.89</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.71</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.31</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.11</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.80</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.40</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.20</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.05</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">10.65</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">11.45</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.39</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.99</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.79</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.79</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.39</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.19</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">13.13</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.20</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.73</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">13.53</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Post&nbsp;Hoc&nbsp;Tests</b></H1></CENTER><BR><CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Decade</b></H1></CENTER><BR><CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Homogeneous&nbsp;Subsets</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=335 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Rate</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="5"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Ryan-Einot-Gabriel-Welsch Range<SUP>,a,b</SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Decade</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Subset</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2000's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.52</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1970's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.56</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1980's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.88</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">7.88</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1990's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.07</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2010's</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">30</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">8.77</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.129</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">.494</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Means for groups in homogeneous subsets are displayed.<BR> Based on observed means.<BR> The error term is Mean Square(Error) = ,402.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">a. Critical values are not monotonic for these data. Substitutions have been made to ensure monotonicity. Type I error is therefore smaller.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">b. Alpha = .05.</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Race</b></H1></CENTER><BR><CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Homogeneous&nbsp;Subsets</b></H1></CENTER><BR><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=434 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Rate</FONT></TD>
+</TR>
+
+<TR>
+<TD  STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" COLSPAN="5"  BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Ryan-Einot-Gabriel-Welsch Range<SUP>,a</SUP><br></FONT></TD>
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Race</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" COLSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Subset</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">2</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="CENTER" VALIGN="BOTTOM" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">3</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Hispanic / Latinos</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">5.63</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Black / Asian / American Indian</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">6.15</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">White</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">50</FONT></TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD ALIGN="CENTER" VALIGN="CENTER" BGCOLOR="#ffffff">&nbsp</TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">12.11</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Sig.</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">1.000</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Means for groups in homogeneous subsets are displayed.<BR> Based on observed means.<BR> The error term is Mean Square(Error) = ,402.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">a. Alpha = .05.</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+<CENTER><H1><b><head><style type="text/css">p{color:0;font-family:SansSerif;font-size:18pt;font-style:normal;font-weight:bold;text-decoration:none}</style></head><BR>Profile&nbsp;Plots</b></H1></CENTER><BR><CENTER><IMG SRC ="OUTPUT1.jpg"><BR></CENTER><CENTER><IMG SRC ="OUTPUT2.jpg"><BR></CENTER><CENTER><IMG SRC ="OUTPUT3.jpg"><BR></CENTER><TABLE WIDTH="100%"><TR><TD ALIGN="LEFT">
+<TABLE WIDTH=480 BORDER="1">
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:bold; font-size:9.0pt" ALIGN="CENTER" VALIGN="CENTER" COLSPAN="3" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Notes</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Output Created</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">16-AUG-2022 16:09:04</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Comments</FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">&nbsp</TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="6" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Input</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Data</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">C:\Users\profz\Desktop\my_work\Data - RQ2.sav</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Active Dataset</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">DataSet1</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Filter</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Weight</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Split File</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000"><none></FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">N of Rows in Working Data File</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">150</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Missing Value Handling</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Definition of Missing</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">User-defined missing values for dependent variables are treated as missing.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Cases Used</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Statistics are based on cases with no missing values for any dependent variable or factor used.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Syntax</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">EXAMINE VARIABLES=Rate BY Race BY Decade<BR>  /PLOT=BOXPLOT<BR>  /STATISTICS=NONE<BR>  /NOTOTAL.</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Resources</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Processor Time</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">00:00:00,23</FONT></TD>
+</TR>
+
+<TR>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="LEFT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">Elapsed Time</FONT></TD>
+<TD STYLE="font-family:sans-serif; font-weight:normal; font-size:9.0pt" ALIGN="RIGHT" VALIGN="TOP" BGCOLOR="#ffffff">
+<FONT COLOR="#000000">00:00:00,21</FONT></TD>
+</TR>
+
+<BR></TD></TR></TABLE>
+</BODY></HTML>

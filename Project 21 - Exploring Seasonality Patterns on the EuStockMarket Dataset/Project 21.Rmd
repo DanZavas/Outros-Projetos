@@ -1,0 +1,99 @@
+---
+title: "Exploring Seasonality Patterns on the EuStockMarket Dataset"
+author: "Danilo Zavarize"
+date: "July 29, 2022"
+output: html_document
+---
+
+### The dataset `EuStockMarket` Contains the daily closing prices of major European stock indices: Germany DAX (Ibis), Switzerland SMI, France CAC, and UK FTSE. The data are sampled in business time, i.e., weekends and holidays are omitted.
+
+#### **INITIAL STEPS**
+
+```{r initial, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+
+# Calling Packages
+library(ggfortify)
+library(zoo)
+library(tseries)
+library(astsa)
+library(forecast)
+library(ggplot2)
+library(psych)
+
+# Getting Data
+data(EuStockMarkets)
+```
+
+#### **PART A:** For the 4 indexes, plots the ACF with lag of up to 1000 days. What differences do you see between the 4 stocks.
+
+```{r Part A, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.width=8, fig.height=5}
+
+# Plot - Germany DAX (Ibis)
+DAX <- (EuStockMarkets[,1])
+components.DAX = decompose(DAX)
+x_DAX = DAX- components.DAX$seasonal
+DAX_d <- diff(x_DAX, differences=1)
+acf(DAX_d,lag.max = 1000,main="Figure 1.  ACF for German DAX")
+
+# Plot - Switzerland SMI
+SMI <- (EuStockMarkets[,2])
+components.SMI = decompose(SMI)
+x_SMI = SMI- components.SMI$seasonal
+SMI_d <- diff(x_SMI, differences=1)
+acf(SMI_d,lag.max = 1000,main="Figure 2.  ACF for Switzerland SMI")
+
+# Plot - France CAC
+CAC <- (EuStockMarkets[,3])
+components.CAC = decompose(CAC)
+x_CAC = CAC- components.CAC$seasonal
+CAC_d <- diff(x_CAC, differences=1)
+acf(CAC_d,lag.max = 1000,main="Figure 3.  ACF for France CAC")
+
+# Plot - UK FTSE
+FTSE <- (EuStockMarkets[,4])
+components.FTSE = decompose(FTSE)
+x_FTSE = FTSE- components.FTSE$seasonal
+FTSE_d <- diff(x_FTSE, differences=1)
+acf(FTSE_d,lag.max = 1000,main="Figure 4.  ACF for UK FTSE")
+```
+
+##### [As observed from the ACF plots, each of the stocks seem to present a similar behavior in terms of autocorrelation. That is, all of the 4 graphs have a significant spike up to the first lag which is the common behavior for time series for MA(q) models. These ACF shapes also suggest a moving average process. However, practice of more than one model other MA(q) should be tested in order to check this presupposition.]{style="color: red"}
+
+#### **PART B:** Plot the time decomposition for the French CAC index. What are the differences in seasonality comparing CAC with SMI?
+
+```{r Part B, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.width=8, fig.height=8}
+
+# Decomposition of CAC
+components.CAC = decompose(CAC)
+plot(components.CAC)
+
+# Decomposition of SMI
+components.SMI = decompose(SMI)
+plot(components.SMI)
+```
+
+##### [As observed from the decomposition, in terms of trend we have a long-term increase in both cases. The cycle, on the other hand, seems to not affect these time series as none of them appear to show sharp rises or falls. The seasonality in both cases is quite present, but behave differently. That is, while the closing prices of CAC seem to reach their quarterly peak at the first quarter, for SMI it appears to occur around the third quarter.]{style="color: red"}
+
+#### **PART C:** Make a scatter plot of the seasonality values between all 4 indexes (4x4 plot). Which indexes have the highest seasonality correlation with each other?
+
+```{r Part C, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.width=10, fig.height=10}
+
+# 4x4 Plot
+DAX_season <- as.vector(components.DAX$seasonal)
+SMI_season <- as.vector(components.SMI$seasonal)
+CAC_season <- as.vector(components.CAC$seasonal)
+FTSE_season <- as.vector(components.FTSE$seasonal)
+season.df <- as.data.frame(cbind(DAX_season, SMI_season, CAC_season, FTSE_season))
+pairs(season.df,col = "red",                                         
+      pch = 18,                                            
+      labels = c("German DAX", "Switzerland SMI", "France CAC", "UK FTSE"),
+      main = "Scatterplots of the Relationships Between EU Indexes Seasonalities (1991 - 1998)")
+
+# Correlations
+corPlot(season.df, 
+        cex = 1.2, 
+        labels =c("German DAX", "Switzerland SMI", "France CAC", "UK FTSE"), 
+        main = "Correlations of EU Indexes Seasonalities (1991 - 1998)")
+```
+
+##### [As observed from two last plots, we can conclude that highest correlations between seasonalities of these EU indexes are between German DAX and France CAC (r = 0.81), Switzerland SMI and France CAC (r = 0.72), and German DAX and Switzerland SMI (r = 0.72).]{style="color: red"}

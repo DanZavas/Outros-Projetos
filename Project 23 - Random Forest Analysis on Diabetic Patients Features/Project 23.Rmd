@@ -1,0 +1,212 @@
+---
+title: 'Random Forest Analysis on Diabetic Patients Features'
+author: "Danilo Zavarize"
+date: "August 12, 2022"
+output: html_document
+---
+
+#### **DIRECTIONS**
+
+#### In this assignment, you will use the Diabetes2.csv data to perform random forest classification with class imbalance correction. If an answer requires a written response, use '\##' before your answer. You will submit (1) .R Script file and (1) .RData file, which contains all objects in your workspace created while completing the homework assignment. If you have extra objects in your workspace, clear your workspace, run your HW file and then save your workspace using save.image().
+
+#### Note: Your files should be named using the following format: HW#\_Group#. For instance, HW #4 for Group 30 would be: HW4_Group30.R and HW4_Group30.RData.
+
+#### **DATA DESCRIPTION**
+
+#### The Diabetes2.csv file contains medical data regarding diabetes in females of Pima Native American heritage. The independent variables include medical and demographic information and the variable of interest, diabetes, indicates if the individual is positive or negative for diabetes. A doctor would like to use this data set to build predictive models. She prioritizes correctly predicting positive (pos) diabetes diagnoses and wants to avoid false negative diagnoses.
+
+#### **VARIABLES DESCRIPTION**
+
+-   **`pregnant`**: *number of prior pregnancies*;
+-   **`glucose`**: *glucose concentration after 2 hours into glucose tolerance test*;
+-   **`pressure`**: *diastolic blood pressure*;
+-   **`triceps`**: *triceps skin thickness*;
+-   **`insulin`**: *2 hour serum insulin*;
+-   **`mass`**: *body mass index (BMI)*;
+-   **`pedigree`**: *diabetes pedigree function*;
+-   **`age`**: *individual's age (in years)*;
+-   **`diabetes`**: *if the individual has diabetes (pos) or not (neg)*;
+
+#### **PRELIMINARY STEPS**
+
+-   **Loading Libraries**
+
+    ```{r libraries, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+    library(DescTools)
+    library(caret)
+    library(randomForest)
+    library(readr)
+    library(ggplot2)
+    library(ROSE)
+    library(rpart)
+    library(ConfusionTableR)
+    ```
+
+-   **0a. To begin, import the Diabetes2.csv data set as a data frame named `Diab`. Since the only character variable is the target (Y) variable, diabetes, set stringsAsFactors = TRUE to import it as a factor variable.**
+
+    ```{r import, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+    Diab <- read.csv("Diabetes2.csv", stringsAsFactors = TRUE)
+    head(Diab, 5)
+    ```
+
+-   **0b. Obtain structure and summary information for the Diab dataframe.**
+
+    ```{r struc.sum, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+
+    # Structure
+    str(Diab)
+
+    # Summary
+    summary(Diab)
+    ```
+
+### **SOLUTIONS**
+
+#### **1a. (1) What is the average glucose level for people diagnosed with diabetes?**
+
+```{r 1a, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+mean.glu.pos <- round(mean(Diab[Diab$diabetes == 'pos', "glucose"]),2)
+mean.glu.pos
+```
+
+#### [As observed, the average glucose level for people diagnosed with diabetes is 141.26 mg/dl.]{style="color: red"}
+
+#### **1b. (1) What is the maximum glucose level for people who are NOT diagnosed with diabetes?**
+
+```{r 1b, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+max.glu.neg <- max(Diab[Diab$diabetes == 'pos', "glucose"])
+max.glu.neg
+```
+
+#### [As observed, the maximum glucose level for people who were not diagnosed with diabetes is 199 mg/dl.]{style="color: red"}
+
+**2a. (1) For Random Forest, no data transformations are necessary. Missing values can technically be handled, although you may want to handle missing values prior to analysis. Are there any missing values in the `Diab` dataframe?**
+
+```{r 2a, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+Diab[!complete.cases(Diab),]
+```
+
+#### [As observed, there are 7 missing values in the dataset, which all of them are from the `insulin` variable. Participant's number with missing insulin values are 1, 2, 31, 35, 38, 39, and 46.]{style="color: red"}
+
+#### **2b. (2) If missing values were identified in 2a, perform imputation. If imputing, what measure should you use to impute for the missing values? Why? Explain.**
+
+```{r 2b, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Imputation
+Diab$insulin[is.na(Diab$insulin)] <- 99
+
+# Overview
+Diab[!complete.cases(Diab),]
+```
+
+#### [As observed from 2a, there are 7 missing values in the dataset. There are multiple approaches to perform imputation in cases like this. One could replace the missing values with zero, the mean, or the median of the variable. Or even remove the rows where missing values exist or replace with random numbers like "99". Anyways, the imputation performed here considered replacement by a random number, which was "99". This will help "filtering" these values when there is the need to use the variable.]{style="color: red"}
+
+#### **3. (1) Split your `Diab` data into training (named train) and testing (named test) sets. Use an 85/15 split ratio and use 645 as your initial seed.**
+
+```{r 3, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Setting Seed
+set.seed(645)
+# Split Configuration
+split1<- sample(c(rep(0, 0.85 * nrow(Diab)), rep(1, 0.15 * nrow(Diab))))
+# Table Split Configuration
+table(split1)
+# Creating Train Dataset
+train <- Diab[split1 == 0, ]
+head(train, 5)
+# Creating Test Dataset
+test <- Diab[split1 == 1, ]
+head(test, 5)
+```
+
+#### **4a. (1) The target variable in our analysis is diabetes. Create a barplot of the diabetes variable in the training set.**
+
+```{r 4a, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.width=8, fig.height=4}
+barplot.diab <- ggplot(train, 
+                       aes(x=factor(diabetes))) + 
+  geom_bar(width = 0.5, color= "black") +
+  labs(title = "Distribution of Participants by Diabetes Status",
+       x = "Diabetes Status",
+       y ="Frequency") +
+  scale_x_discrete(labels = c("pos" = "Positive", "neg" = "Negative")) +
+  theme(axis.text.x = element_text(face="bold", size=12))
+barplot.diab
+```
+
+#### **4b. (1) Based on the bar plot created in 4a, class imbalance exists. What is the minority class?**
+
+#### [As observed from 2a, class minority does exist and the minority class corresponds to the "Positive" diabetes status.]{style="color: red"}
+
+#### **4c. (2) How might class imbalance impact your diabetes classification analysis? Explain.**
+
+#### [When working on real-world problems, we often encounter datasets that are imbalanced in nature, especially on health-related issues. In these cases, in general, we are interested in detecting the presence of a disease (such as breast cancer or diabetes). However, because this feature of interest is often a minority in the population, we inevitably have an imbalanced dataset. In this context, most of the time we are more interested in the minority class, that is, determining whether a person actually has a disease. However, most machine learning algorithms for classification are designed for datasets with an equivalent number of examples for each class, often resulting in models with poor predictive performance, especially for the minority class examples. Therefore, the main challenge of working on classification problems with imbalanced datsets is exactly the lack of examples for the minority class and the difference in the importance of classification errors between classes, being often necessary to carry out additional steps, such as using re-sampling techniques (random undersampling and random oversampling) and alternative evaluation metrics (accuracy, recall and F-score).]{style="color: red"}
+
+#### **5a. (2) Based on the distribution of the target variable, which method should you use to correct for class imbalance: random undersampling or random oversampling? Why this method? Explain.**
+
+#### [Since the class of interest is the one with less values, we shall perform a **random oversampling** in order to balance sizes by synthesizing new examples in the minority class in the training dataset. Therefore, to balance the training dataset, we can instead of excluding examples from the majority class, add new examples from the minority class. If we duplicate existing examples from the minority class we would not be adding any new information to the model, so we can create new examples by synthesizing existing examples in the training set, with small random differences.]{style="color: red"}
+
+#### **5b. (2) Based on your response in question 5a, use your chosen resampling strategy (undersampling or oversampling) to create a balanced training set, named `trainbal`. Set 468 as your random seed. After resampling, how many pos and neg values do you have in the `trainbal` dataset for the diabetes variable?**
+
+```{r 5b, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Setting Seed
+set.seed(468)
+# Checking Imbalance and Distribution
+table(train$diabetes)
+round(prop.table(table(train$diabetes)),2)
+# Testing a Model with Decision Tree
+treeimb <- rpart(diabetes ~ ., data = train)
+pred.treeimb <- predict(treeimb, newdata = test)
+# Checking Accuracy Metrics
+accuracy.meas(test$diabetes, pred.treeimb[,2])
+roc.curve(test$diabetes, pred.treeimb[,2], plotit = F)
+# Creating Balanced Dataset
+trainbal <- ovun.sample(diabetes ~ ., data = train, method = "over", N = 800)$data
+# Checking Balanced Training Dataset
+table(trainbal$diabetes)
+```
+
+#### [As we see, the imbalanced dataset contains 35% of positive cases and 65% of negative cases., which is a somewthat imbalanced data set. So, to check how badly can this affect the prediction accuracy, a model was built on this data by means of decision tree algorithm for modeling purposes. These metrics from the decision tree model provided interesting information. As seen, with a threshold value of 0.5, a precision score of 0.694 says there may be false positives and a recall score of 0.641 is somewhat low and may indicate the presence of a higher number of false negatives. Likewise, a F score of 0.333 is also somewhat low and suggests weak-to-moderate accuracy of this model so far. For final decision, we shall check the accuracy of this model by means of the ROC curve which gives us a clearer picture about this model being worth or not. As observed, the ROC value of 0.760 means it not a good score about the model, which will get biased toward the majority class and fails to map minority class. Then, my performing the oversampling technique we obtain a new training data set with 424 negatives and 376 positives, satisfactory for analysis purposes.]{style="color: red"}
+
+#### **6a. (2) Using your balanced training data, use the tuneRF() function to tune the m (mtry) hyperparameter in a RF model. Use ntreeTry = 500, improve = 1e-5 and stepFactor = 2. Set doBest = TRUE so that the optimal model is created. First, set 468 as the random seed. What is the optimal m value?**
+
+```{r 6a, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Setting Seed
+set.seed(468)
+# Tuning
+rf.fit <- tuneRF(trainbal[,-9], trainbal[,9], 3, ntreeTry=500, stepFactor=2, improve=1e-5, doBest=TRUE)
+print(rf.fit)
+```
+
+#### [As observed, by suggesting a starting value of 3 for m, which usually is the square root of the number of variables in the data set, the tuning actually suggested 3 as the optimal value, by resulting in a OOBError of 12.75%. Therefore, we'd expect 3 to work just fine.]{style="color: red"}
+
+#### **6b. (2) What does the value of m (mtry) represent? What does the optimal value tell you about your RF model?**
+
+#### [The value of m, or mtry, means the number of variables selected at each split by the model. It is usually the square root of the number of variables in the data set. Thus, by being optimal, it means the random forest model works best with such number of splits.]{style="color: red"}
+
+#### **6c. (1) Based on the model, what are the top 3 most important variables?**
+
+```{r 6c, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Model Fit
+model_RF = randomForest(x = trainbal[,-9], y = trainbal[,9], ntree = 500, mtry = 3, importance = TRUE)
+# Importance
+varImpPlot(model_RF)
+```
+
+#### [By observing the mean decrease accuracy plot we notice that the top 3 variables in importance are `glucose`, `mass`, and `age`.]{style="color: red"}
+
+#### **6d. (2) How can the doctor use variable importance information obtained from the random forest model? Explain.**
+
+#### [The accuracy from the plot above indicates by how much the model accuracy decreases (in %) if the so-called important variables are removed from the model. Therefore, the doctor can use this information on importance of the variables to know and prioritize their presence in the model, as well as understand how they affect the accuracy of predicting if a participant/patient will develop diabetes or not.]{style="color: red"}
+
+#### **7a. (2) Use the predict() function to obtain predictions for the test data set. Then, use the confusionMatrix() function to obtain testing performance measures. Use the minority class identified in 4b as the positive class.**
+
+```{r 7a, echo=TRUE, include=TRUE, warning=FALSE, message=FALSE}
+# Predicting
+RF.pred <- predict(model_RF, newdata = test)
+# Confusion Matrix Statistics
+confusionMatrix(RF.pred, test$diabetes, positive = "pos")
+# Tabulation of Test Datatset Diabetes Status
+table(test$diabetes)
+```
+
+#### **7b. (2) Describe the performance of the model in words. Is this a good model for the doctor to use to predict if a person has diabetes? Why or why not? Explain.**
+
+#### [As observed, among the true positives the model was able to predict 20 cases correctly out of 39. On the other hand, the model got 66 true negative cases out of 76. Such capacity is reflected by the accuracy statistics of 0.7478 or 74.78%, as well as the sensitivity which reflects the number of true positive cases and resulted in 0.5128 or 51.28%. Specificity, on the other hand, shows the rate of true negatives got correctly, resulting in 0.8684 or 86.84%. As we can see, the model was able to predict more of true negative than true positive cases. For the case of this analysis, looking at specificity value is extra important because of our original imbalanced dataset. Therefore, the model is not very good in predicting if a person has diabetes as it got correctly only a few above 50%.]{style="color: red"}

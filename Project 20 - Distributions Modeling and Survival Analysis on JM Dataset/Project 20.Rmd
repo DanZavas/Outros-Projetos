@@ -1,0 +1,119 @@
+---
+title: "Distributions and Survival Analysis on JM Dataset"
+author: "Danilo Zavarize"
+date: "August 14, 2022"
+output: html_document
+---
+
+### Question (1): For the lung dataset, plot the probability density function f(t) of the uncensored event data (status = 2) and report the summary statistics of the distribution (mean, median, standard deviation).
+
+```{r Q1, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=6, fig.align='center'}
+
+# Calling Data
+lung_data <- survival::lung
+
+# Loading Packages
+library(haven)
+library(survival)
+library(car)
+
+# Mean, Median, and Standard Deviation
+mean_dist <- mean(lung_data[lung_data$status == '2', 'time']); mean_dist
+median_dist <- median(lung_data[lung_data$status == '2', 'time']); median_dist
+std_dist <- sd(lung_data[lung_data$status == '2', 'time']); round(std_dist,2)
+
+# PDF Plot
+x=seq(-350,950,length=165)
+y=dnorm(x,mean=mean_dist,sd=std_dist)
+plot(x,y,type="l",lwd=2,col="red", ylab="Probability Distribution Function", xlab ="Time", main="PDF of Uncensored Events (Status == 2)")
+abline(v=283, col="black")
+```
+
+##### [As observed, the distribution has a mean of 283 days, a median of 226 days, and a standard deviation of approximately 202.81 days. ]{style="color: red"}
+
+#### (a) Plot the cumulative distribution function (cdf) of the pdf you derived above. What is the approximate survival function value S(t) at t=400 based on this plot?
+
+```{r Q1a, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=9, fig.height=7, fig.align='center'}
+
+# CDF Plot
+cumulative<-pnorm(x, 283, 202.81)
+plot(x, cumulative, col="darkorange", xlab="", ylab="Cumulative Probability",type="l",lwd=2, cex=2, main="CDF of Uncensored Events (Status == 2)", cex.axis=.8)
+abline(v=400, col="blue")
+abline(h=0.718, col="blue")
+```
+
+##### [As observed from the crossing blue lines, the survival function value at S(t) = 400 days is approximately 0.718.]{style="color: red"}
+
+#### (b) Plot the pdf and cdf separately for the uncensored observations separated by sex covariate (i.e. two groups of observations). Use different colors for the two groups to make one plot each for pdf and cdf.
+
+```{r Q1b, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=9, fig.height=7, fig.align='center'}
+
+# Sex Distribution
+table(lung_data$sex)
+
+# Obtaining Statistics - Male
+mean_dist_m <- mean(lung_data[lung_data$status == '2' & lung_data$sex=="1", 'time'])
+mean_dist_m
+std_dist_m <- sd(lung_data[lung_data$status == '2' & lung_data$sex=="1", 'time'])
+round(std_dist_m,2)
+
+# Obtaining Statistics - Female
+mean_dist_f <- mean(lung_data[lung_data$status == '2' & lung_data$sex=="2", 'time'])
+mean_dist_f
+std_dist_f <- sd(lung_data[lung_data$status == '2' & lung_data$sex=="2", 'time'])
+round(std_dist_f,2)
+
+# Plot PDF - Male and Females
+myData_1 <- data.frame(Male=rnorm(1000, m=262.59, sd=198.04),
+                       Female=rnorm(1000, m=326.13, sd=207.86))
+dens_1 <- apply(myData_1, 2, density)
+plot(NA, xlim=range(sapply(dens_1, "[", "x")), ylim=range(sapply(dens_1, "[", "y")), main="PDF of Uncensored Events for Males and Females (Status == 2)", xlab="Time", ylab="Probability Density Function")
+mapply(lines, dens_1, col=1:length(dens_1))
+legend("topright", legend=names(dens_1), fill=1:length(dens_1))
+
+# Plot CDF - Males and Females
+plot(ecdf(myData_1$Male),
+     xlim=c(-350,950),
+     ylim=c(0,1),
+     xlab="Time",
+     ylab="Cumulative Density Function",
+     main="CDF of Uncensored Events for Males and Females (Status == 2)",
+     verticals=T) 
+lines(ecdf(myData_1$Female),
+      lty=3,
+      verticals=T,
+      col="red") 
+legend("topleft", legend=names(dens_1), fill=1:length(dens_1))
+```
+
+### Question (2): Using the data "pbc2.id" from the R package ("JM"), fit a Cox proportional hazards model using covariates age, sex, drug, hepatomegaly, serChol and platelets (Hint: use the column status2 for the status).
+
+```{r Q2, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+
+# Calling Data
+pbc2_data <- JM::pbc2.id
+
+# Model
+mod.ph <- coxph(Surv(years, status2) ~ age + sex + drug + hepatomegaly + serChol + platelets, data=pbc2_data)
+summary(mod.ph)
+```
+
+#### (a) Report the summary of the cox regression and your interpretation.
+
+##### [As observed from the output, we have a statistically significant model that agrees in 0.734 or 73.4% of the cases; W = 72.4, p \<0.001, where the omnibus null hypothesis that all predictors are equal to zero should be rejected as all significance tests are in agreement. Among the variables in the model, using a confidence level of 95%, we have age, hepatomegaly, and serChol as significant predictors. Therefore, in terms of age, we have that its coefficient is equal to 0.053 which in exponentiated form results in 1.0541. This means that each additional year in age is associated with to a increase in hazard for biliary cirrhosis of 5.41%, free to vary with 95% confidence between 3.43% and 7.40%. In terms of hepatomegaly, the coefficient is 0.808 which exponentiated results in 2.2424. This means that people with a history of hepatomegaly has 124.24% more likely to develop biliary cirrhosis than a person with no history of hepatomegaly would, and that likelihood is free to vary with 95% confidence between 51.67% and 231.5%. Finally, in terms of serum cholesterol, we have a coefficient of 0.0011769 which exponentiated results in 1.0012. This means that each additional 1 mg/dL increase in serum cholesterol is associated to a increase in 0.12% in hazard for biliary cirrhosis, free to vary between 0.06% and 0.20% with 95% confidence.]{style="color: red"}
+
+#### (b) Make a K-M plot for age covariate with age \< 50 and age \>= 50 as the two patient groups.
+
+```{r Q2b, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, fig.width=9, fig.height=7, fig.align='center'}
+
+# Calling Packages
+library(ggplot2)
+library(ggfortify)
+
+# Plot
+age_cat <- ifelse(pbc2_data$age>=50, "More Than 50 Years", "Less Than 50 Years")
+km_AG_fit <- survfit(Surv(years, status2) ~ age_cat, data=pbc2_data)
+autoplot(km_AG_fit) + theme_bw() + labs(title="K-M Plot for Biliary Cirrhosis by Age Group", x = "Time (in years)", y = "Survival Rate")
+```
+
+##### [As observed, patients younger than 50 years old clearly have a higher chance of developing biliary cirrhosis compared to those aged 50 years or more.]{style="color: red"}

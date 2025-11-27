@@ -1,0 +1,546 @@
+---
+title: "Exploratory and Inferential Analysis on Students Math Performance"
+author: "Danilo Zavarize"
+output: html_document
+---
+
+<font size="3"> 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 100)
+```
+
+## 1. Entering Dataset
+
+For this project, the dataset "Student Performance - Math Version" was retrieved from the UCI Machine Learning Repository. This dataset has 395 observations distributed over 33 variables. Exploration of the variables was done by means of visualizations, descriptive statistics and inferential tests based on Multiple Linear Regression. Below can be found the chunk of code used to retrieve the data and attach it to the workplace in R:
+
+```{r students math performance}
+stu_per <- read.csv("https://raw.githubusercontent.com/jimmyrisk/ModifiedUCIDataSets/master/Student-Performance/math.csv", sep=",")
+attach(stu_per)
+```
+
+## 2. Preview of Variables in the Dataset
+
+For aesthetic purposes, the preliminary view of the dataset was divided in three parts, as observed below:
+
+### Part 1: From Variable 1 to 11
+
+```{r information of variables 1, echo=TRUE}
+head(stu_per[1:11])
+```
+
+### Part 2: From Variable 12 to 21
+
+```{r information of variables 2, echo=TRUE}
+head(stu_per[12:21])
+```
+
+### Part 3: From Variable 22 to 33
+
+```{r information of variables 3, echo=TRUE}
+head(stu_per[22:33])
+```
+
+## 3. Research Questions
+
+The analysis for this project was based on the research question seen below, with regard to the dataset:
+
+* **Research Question:** *How does the a student's age, sex, family size, parents marital status, extra educational support, educational familiar support, study time, extra paid classes, goal for higher education, access to internet, relationship status, free time, health status, alcohol consumption, and number of absences relate to their math performance score during secondary education?*
+
+## 4. Hypotheses
+
+The research question aforementioned led to the following null and alternative hypotheses:
+
+**Hypotheses:**
+
+* **H0:** There is no relationship among math performance score during secondary education and the student's age, sex, family size, parents marital status, extra educational support, educational familiar support, study time, extra paid classes, goal for higher education, access to internet, relationship status, free time, health status, alcohol consumption, and number of absences (β*Age* = β*Sex* = β*FamilySize* = β*ParentsMaritalStatus* = β*ExtraEdSup* = β*EdFamSup* = β*StudyTime* = β*ExPaidClasses* = β*Higher* = β*Internet* = β*RelationshipStatus* = β*FreeTime* = β*HealthStatus* = β*AlcoholComsump* = β*Absences* = 0)
+
+* **Ha:** Either one or more of the variables have a relationship with students' math performance score during secondary education (β*i* ≠ 0)
+
+## 5. Required Tests
+
+All the analyses in this project were conducted at 5% significance level. There is interest in knowing the existence of a relationship among students' math performance score during secondary education and the proposed variables. Among the 16 variables (including the response variable), there are 9 qualitative binary variables, 4 qualitative categorical, and 3 quantitative discrete. 
+
+Regarding the qualitative binary variables, there were:
+
+* **"Student's Sex":** coded as M - Males and F - Females; 
+* **"Student's Family Size":** coded as LE3 - <=3 and GT3 - >=3; 
+* **"Student's Parents Marital Status":** coded as T - Living Together and A - Apart; 
+* **"Student's Extra Educational Support":** coded as Yes or No; 
+* **"Student's Educational Familiar Support":** coded as Yes or No;
+* **"Student's Extra Paid Classes":** coded as Yes or No, 
+* **"Student's Goal for Higher Education":** coded as Yes or No;
+* **"Student's Internet Access":** coded as Yes or No;
+* **"Student's Romantic Status":** coded as Yes or No. 
+
+Regarding the quantitative categorical variables, there were:
+
+* **"Student's Study Time":** coded as 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours;
+* **"Student's Free Time":** coded as 1 - Very Low to 5 - Very High; 
+* **"Student's Health Status":** coded as 1 - Very Bad to 5 - Very Good;
+* **"Student's Alcohol Consumption":** coded as 1 - Very Low to 5 - Very High. 
+
+Regarding the quantitative discrete variables, there were:
+
+* **"Student's Number of Absences":** from 0 to 93; 
+* **"Student's Age":** from 15 to 22;
+* **"Student's Final Math Grade (response)":** from 0 to 20.
+
+Therefore, the appropriated analysis is a Multiple Linear Regression. For analysis purposes, the reference groups among the qualitative binary variables were "Males", "GT3", "T", and "Yes". The reference group for the qualitative categorical variables were ">10 hours", "Very High", and "Very Good". From that perspective, we shall proceed with the assumptions for running a Multiple Linear Regression.
+
+## Multiple Linear Regression
+
+### Test Assumptions
+
+The main conditions for a Multiple Linear Regression are:
+
+**Linear Relationship Between Response and Predictors:** To check whether this condition is met, below are presented the scatter plots regarding each type of relationship pre-established. The next 15 graphs indicate that the linear relationship of the selected variables range between -0.17 and 0.17. From now on, R will decide which variables will be best for the model, except the case in which were tested only one predictor.
+
+* **For Student's Sex:**
+
+```{r correl sex, echo=TRUE}
+sex_stu <- stu_per$sex
+sex_stu[sex_stu == "M"]  <- "1"
+sex_stu[sex_stu == "F"]  <- "0"
+sex_stu <- as.numeric(sex_stu)
+cor_val_sex <- cor.test(sex_stu, stu_per$G3, method="pearson")
+cor_val_sex
+```
+
+In numerical terms, the correlation between the student's sex and final math score measured by means of the Pearson's method was approximately r = .104, as seen above. This suggest that there is a weak positive statistically significant linear relationship between these variables t(393) = 2.06, p < .05.
+
+```{r scatterplot 1, echo=TRUE, message=FALSE, fig.height = 4, fig.width = 7}
+library(ggplot2)
+ggplot(data=stu_per, aes(x=sex_stu, y=G3)) + geom_count(aes(color=sex)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Gender vs. Final Math Performance", y="Final Math Scores", x="Student's Gender") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math score of male students tended to be slightly higher than female students. 
+
+* **For Student's Family Size:**
+
+```{r correl family size, echo=TRUE}
+famsize_stu <- stu_per$famsize
+famsize_stu[famsize_stu == "GT3"]  <- "1"
+famsize_stu[famsize_stu == "LE3"]  <- "0"
+famsize_stu <- as.numeric(famsize_stu)
+cor_val_famsize <- cor.test(famsize_stu, stu_per$G3, method="pearson")
+cor_val_famsize
+```
+
+In numerical terms, the correlation between the student's family size and final math score measured by means of the Pearson's method was approximately r = -.08, as seen above. This suggest that there is barely a rank linear relationship between these variables nor it is statistically significant, t(393) = -1.62, p > .05.
+
+```{r scatterplot 2, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=famsize_stu, y=G3)) + geom_count(aes(color=famsize)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Family Size vs. Final Math Performance", y="Final Math Scores", x="Student's Family Size") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students with family size greater than 3 ("GT3") seem to be the similar as those students with family size less than 3 ("LE3"). However, the variability of scores is visually higher for those with family size greater than 3, which leads us to believe that having more than 3 family members in the house have different effects on students. 
+
+* **For Student's Parents Marital Status:**
+
+```{r correl parents marital status, warning=FALSE, message=FALSE, echo=TRUE}
+parstatus_stu <- stu_per$Pstatus
+parstatus_stu[parstatus_stu == "T"]  <- "1"
+parstatus_stu[parstatus_stu == "A"]  <- "0"
+parstatus_stu <- as.numeric(parstatus_stu)
+cor_val_parstatus <- cor.test(parstatus_stu, stu_per$G3, method="pearson")
+cor_val_parstatus
+```
+
+In numerical terms, the correlation between the student's parents marital status and final math score measured by means of the Pearson's method was approximately r = -.06, as seen above. This suggest that there is barely a rank linear relationship between these variables nor it is statistically significant, t(393) = -1.15, p > .05.
+
+```{r scatterplot 3, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=parstatus_stu, y=G3)) + geom_count(aes(color=Pstatus)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Parents Marital Status vs. Final Math Performance", y="Final Math Scores", x="Student's Parents Marital Status") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students with parents that live together seem to be similar as those students with parents living apart. However, the variability of scores is visually higher for those with parents living together, which leads us to believe that having parents living together have different effects on students' performance. 
+
+* **For Student's Extra Educational Support:**
+
+```{r correl extra support, echo=TRUE}
+extra_stu <- stu_per$schoolsup
+extra_stu[extra_stu == "yes"]  <- "1"
+extra_stu[extra_stu == "no"]  <- "0"
+extra_stu <- as.numeric(extra_stu)
+cor_val_extrasup <- cor.test(extra_stu, stu_per$G3, method="pearson")
+cor_val_extrasup
+```
+
+In numerical terms, the correlation between the student's extra educational support and final math scores measured by means of the Pearson's method was approximately r = -.08, as seen above. This suggest that there is a barely a linear relationship between these variables nor it is significant, t (393) = -1.65, p > .05.
+
+```{r scatterplot 4, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=extra_stu, y=G3)) + geom_count(aes(color=schoolsup)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Extra Educational Support vs. Final Math Performance", y="Final Math Scores", x="Student's Extra Educational Support") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students with extra educational support seem to be smaller compared to those students with no extra support. However, the variability of scores is visually higher for those with no extra support, which leads us to believe that having no extra support have different effects on students' performance. 
+
+* **For Student's Familiar Educational Support:**
+
+```{r correl familiar support, echo=TRUE}
+famsup_stu <- stu_per$famsup
+famsup_stu[famsup_stu == "yes"]  <- "1"
+famsup_stu[famsup_stu == "no"]  <- "0"
+famsup_stu <- as.numeric(famsup_stu)
+cor_val_famsup <- cor.test(famsup_stu, stu_per$G3, method="pearson")
+cor_val_famsup
+```
+
+In numerical terms, the correlation between the student's familiar educational support and final math scores measured by means of the Pearson's method was approximately r = -.04, as seen above. This suggest that there is beraly a relationship between these variables nor it is significant, t (393) = -0.78,  p >.05.
+
+```{r scatterplot 5, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=famsup_stu, y=G3)) + geom_count(aes(color=famsup)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Familar Educational Support vs. Final Math Performance", y="Final Math Scores", x="Student's Familiar Educational Support") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores of students with familiar educational support seem to be about the same as those students with no extra support.
+
+* **For Student's Extra Paid Classes:**
+
+```{r correl paid classes, echo=TRUE}
+paid_stu <- stu_per$paid
+paid_stu[paid_stu == "yes"]  <- "1"
+paid_stu[paid_stu == "no"]  <- "0"
+paid_stu <- as.numeric(paid_stu)
+cor_val_paid <- cor.test(paid_stu, stu_per$G3, method="pearson")
+cor_val_paid
+```
+
+In numerical terms, the correlation between the student's extra paid classes and final math scores measured by means of the Pearson's method was approximately r = .102, as seen above. This suggest that there is a weak positive statistically significant linear relationship between these variables, t(393) = 2.03, p < .05.
+
+```{r scatterplot 6, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=paid_stu, y=G3)) + geom_count(aes(color=paid)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Extra Paid Classes vs. Final Math Performance", y="Final Math Scores", x="Student's Extra Paid Classes") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students with extra paid classes seem to be about the slightly higher than those students with no extra paid classes. However, the variability of scores is visually higher for those with no extra paid classes, which leads us to believe that having no extra paid classes have different effects on students' performance. 
+
+* **For Student's Goal of Higher Education:**
+
+```{r correl higher education, echo=TRUE}
+higher_stu <- stu_per$higher
+higher_stu[higher_stu == "yes"]  <- "1"
+higher_stu[higher_stu == "no"]  <- "0"
+higher_stu <- as.numeric(higher_stu)
+cor_val_higher <- cor.test(higher_stu, stu_per$G3, method="pearson")
+cor_val_higher
+```
+
+In numerical terms, the correlation between the student's goal of higher education and final math scores measured by means of the Pearson's method was approximately r = .183, as seen above. This suggest that there is a weak positive statistically significant linear relationship between these variables, t (393) = 3.68, p < .05.
+
+```{r scatterplot 7, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=higher_stu, y=G3)) + geom_count(aes(color=higher)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Goal of Higher Education vs. Final Math Performance", y="Final Math Scores", x="Student's Goal of Higher Education") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students willing for higher education is greater than final scores of those students with no willing for higher education. However, the variability of scores is visually higher for those willing for higher education, which leads us to believe that having desire for higher education has different effects on students' performance. 
+
+* **For Student's Internet Access:**
+
+```{r correl internet, echo=TRUE}
+internet_stu <- stu_per$internet
+internet_stu[internet_stu == "yes"]  <- "1"
+internet_stu[internet_stu == "no"]  <- "0"
+internet_stu <- as.numeric(internet_stu)
+cor_val_internet <- cor.test(internet_stu, stu_per$G3, method="pearson")
+cor_val_internet
+```
+
+In numerical terms, the correlation between the student's goal for higher education and final math scores measured by means of the Pearson's method was approximately r = .100, as seen above. This suggest that there is a weak positive statistically significant linear relationship between these variables, t (393) = 1.96, p = .05
+
+```{r scatterplot 8, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=internet_stu, y=G3)) + geom_count(aes(color=internet)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Access to Internet vs. Final Math Performance", y="Final Math Scores", x="Student's Internet Access") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students with internet access seem to be slightly higher than final scores of those students with no internet access. The variability of scores among those with no internet is visually smaller than those with internet, which leads us to believe that having access to the internet has an effect on students' math performance. 
+
+* **For Student's Romantic Status:**
+
+```{r correl romantic, echo=TRUE}
+romantic_stu <- stu_per$romantic
+romantic_stu[romantic_stu == "yes"]  <- "1"
+romantic_stu[romantic_stu == "no"]  <- "0"
+romantic_stu <- as.numeric(romantic_stu)
+cor_val_romantic <- cor.test(romantic_stu, stu_per$G3, method="pearson")
+cor_val_romantic
+```
+
+In numerical terms, the correlation between the binary and quantitative variable measured by means of the Pearson's method was approximately r = -.130, as seen above. This suggest that there is a weak negative statistically significant linear relationship between these variables, t(393) = -2.60, p < .05.
+
+```{r scatterplot 9, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=romantic_stu, y=G3)) + geom_count(aes(color=romantic)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Relationship Status vs. Final Math Performance", y="Final Math Scores", x="Student's Relationship Status") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, the scatterplot suggest that final math scores for students in a romantic relationship seem to be slightly smaller than final scores of those students in no romantic relationship. The variability of scores is visually different between both conditions, which leads us to believe that being in a romantic relationship may affect students' math performance. 
+
+* **For Student's Study Time:**
+
+```{r correl study time, echo=TRUE}
+cor_val_study <- cor.test(stu_per$studytime, stu_per$G3, method="pearson")
+cor_val_study
+```
+
+Numerically speaking, the correlation between the study times and math scores measured by means of the Pearson's method was approximately r = .098, as seen above. This suggest that there is barely a relationship between these variables nor it is significant, t (393) = 1.95, p > .05.
+
+```{r scatterplot 10, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=studytime, y=G3)) + geom_count(aes(color=studytime)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Study Times vs. Final Math Performance", y="Final Math Scores", x="Student's Study Times") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, students that dedicate less than 2 hours ("1") or between 2 and 5 hours ("2") of study per week seem to perform equally in math. On the other hand, those who dedicated between 5 and 10 hours ("3") or more than 10 hours ("4") seem to perform slightly higher than the first two conditions, but similarly between them. 
+
+* **For Student's Free Time:**
+
+```{r correl free time, echo=TRUE}
+cor_val_free <- cor.test(stu_per$freetime, stu_per$G3, method="pearson")
+cor_val_free
+```
+
+Numerically speaking, the correlation between the categories and math scores measured by means of the Pearson's method was approximately r = .011 as seen above. This suggest that there is barely a relationship between these variables not it is statistically significant, t (393) = 0.22, p > .05.
+
+```{r scatterplot 11, echo=TRUE, warning=FALSE, message=FALSE,fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=freetime, y=G3)) + geom_count(aes(color=freetime)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Free Time vs. Final Math Performance", y="Final Math Scores", x="Student's Free Time") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+As observed, free time shows very small effect on final math scores except for those who said to have "more than enough free time", that shows higher variability compared to the other categories. Comparing the extreme categories (1 - very bad and 5 - very good), we notice that distribution of scores are about the same but those with very low free time present more variability to the right (positive skew) while the distribution of score for those with very high free time seem to follow a normal distribution (not considering any effect of the single outlier). 
+
+* **For Student's Health Status:**
+
+```{r correl health status, echo=TRUE}
+cor_val_health <- cor.test(stu_per$health, stu_per$G3, method="pearson")
+cor_val_health
+```
+
+Numerically speaking, the correlation between the categories and math scores measured by means of the Pearson's method was approximately r = -.06 as seen above. This suggest that there is barely a relationship between these variables nor it is significant, t(393) = -1.22, p > .05.
+
+```{r scatterplot 12, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=health, y=G3)) + geom_count(aes(color=health)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Health Situation vs. Final Math Performance", y="Final Math Scores", x="Student's Health Situation") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+From the graph, the distribution of final math scores by health statuses seem very similar among those students who reported a 1 - "Very Bad", 3 - "Fine", 4 - "Great" and 5 - "Very Good". On the other hand, those who reported a 2 - "Regular" status showed higher variability of final math scores. However, no actual differences for more or for less regarding the categories seem to exist in the data.
+
+* **For Student's Alcohol Consumption:**
+
+```{r correl alcohol, echo=TRUE}
+cor_val_alcohol <- cor.test(stu_per$Walc, stu_per$G3, method="pearson")
+cor_val_alcohol
+```
+
+Numerically speaking, the correlation between the categories and math scores measured by means of the Pearson's method was approximately r = -.052 as seen above. This suggest that there is barely a relationship between these variables not it is significant, t (393) = -1.03, p >.05.
+
+```{r scatterplot 13, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=Walc, y=G3)) + geom_count(aes(color=Walc)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Alcohol Consumption vs. Final Math Performance", y="Final Math Scores", x="Student's Alcohol Comsumption") + theme_bw() +theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+From the graph, the distribution of final math scores by alcohol consumption seem very similar among those students who reported consumption as 4 - "A Lot", 3 - "Enough", and 5 - "Very High". On the other hand, those who reported a 2 - "Regular" and 1 - "Very Low" status showed higher variability of final math scores. However, no actual differences for more or for less regarding the categories seem to exist in the data.   
+
+* **For Student's Age:**
+
+```{r correl age, echo=TRUE}
+cor_val_age <- cor.test(stu_per$age, stu_per$G3, method="pearson")
+cor_val_age
+```
+
+Numerically speaking, the Pearson's correlation coefficient between student's age and final math score was determined as r = -.162, which suggests that a weak negative statistically significant relationship exists, t(393) = -3.25, p < .05.
+
+```{r scatterplot 14, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=age, y=G3)) + geom_count(aes(color=age)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Age vs. Final Math Performance", y="Final Math Scores", x="Student's Age") + theme_bw() + xlim(15,22) + scale_x_continuous(breaks = round(seq(min(stu_per$age), max(stu_per$age), by = 1),1))
+```
+
+As can be visually noticed, the relationship between a student's age and their math performance score is inverse. That is, older students tend to score less in math compared to younger students.
+
+* **For Student's Number of Absences:**
+
+```{r correl absence, echo=TRUE}
+cor_val_absence <- cor.test(stu_per$absences, stu_per$G3, method="pearson")
+cor_val_absence
+```
+
+Numerically speaking, the Pearson's correlation coefficient for this relationship was determined as r = .034, which unexpectedly suggests that no relationship exists, t(393) = .68, p > .05.
+
+```{r scatterplot 15, echo=TRUE, warning=FALSE, message=FALSE, fig.height = 4, fig.width = 7}
+ggplot(data=stu_per, aes(x=absences, y=G3)) + geom_count(aes(color=absences)) + geom_smooth(method = "lm", se = FALSE) + labs(title="Student's Number of Absences vs. Final Math Performance", y="Final Math Scores", x="Student's Number of Absences") + theme_bw() + scale_x_continuous(breaks = round(seq(min(stu_per$absences), max(stu_per$absences), by = 10),1))
+```
+
+The relationship between a student's number of absences and their math performance also seems to be very weak or barely nonexistent. 
+
+**EXPLORING MODELS**
+
+Since the instructions required the regression of two models (m1 and m2), being m1 a single-best predictor model and m2 a two-or-more predictors model, model m1 was regressed with the variables that presented the largest negative or positive correlation coefficients. Below can be found a table with all the p-values for the correlation coefficients computed in this analysis.
+
+p-values of Correlation Coefficients:
+
+```{r corpvalues, echo=TRUE,message=FALSE, warning=FALSE}
+round(cor_val_absence$p.value, 4)
+round(cor_val_age$p.value, 4)
+round(cor_val_alcohol$p.value, 4)
+round(cor_val_extrasup$p.value, 4)
+round(cor_val_famsize$p.value, 4)
+round(cor_val_famsup$p.value, 4)
+round(cor_val_free$p.value,4)
+round(cor_val_health$p.value, 4)
+round(cor_val_higher$p.value,5)
+round(cor_val_internet$p.value, 4) 
+round(cor_val_paid$p.value, 4)
+round(cor_val_parstatus$p.value, 4)
+round(cor_val_romantic$p.value, 4)
+round(cor_val_sex$p.value, 4)
+round(cor_val_study$p.value,4)
+```
+
+Therefore, the more significant variables for estimation of models are age, higher education, extra paid classes, relationship status, and sex. It was predicted two m1 models in which the m1_1 had the variable "Student's Age" and m1_2 had "Student's Goal of Higher Education". Below can be found the residuals normality test for model m1_1.
+
+* **Model m1_1:**
+
+```{r uni res m1_1}
+m1_1 <- lm(G3~age, data=stu_per)
+summary(m1_1)
+shapiro.test(m1_1$residuals)
+```
+
+The m1_1 model is suggesting that for each year of age the final math performance score tend to decrease by .58 points, t (393) = -3.25, p < .05. That is, older students tend to score less on math than younger students. The estimated average final score was 20.10 points, statistically significant but has no meaning since no age zero in this situation could be assumed. Aside of being a significant model with significant predictors, Shapiro-Wilk test statistics indicate that residuals of the regression are not normally distributed. Therefore, model m1_1 would not be appropriated.
+
+**AIC Value:**
+
+```{r AIC m1_1, echo=TRUE}
+AIC(m1_1)
+```
+
+The large AIC value seen above also leads us to believe that the model has very poor power prediction.
+
+* **Model m1_2:**
+
+```{r uni res m1_2, echo=TRUE}
+m1_2 <- lm(G3~higher, data=stu_per)
+summary(m1_2)
+shapiro.test(m1_2$residuals)
+```
+
+For model m1_2, the variable "Student's Goal of Higher Education" presented a statistically significant predictor role at 95% confidence level. Thus, it means that those who are willing to pursue a higher education tend to score, on average, 3.81 points higher than those who are not willing to go to high school, t(393) = 3.68, p <0.0001. Additionally, the model estimated an average final math score of 6.80, significant at 5%, t(393) = 6.74, p < .05. However, statistics from the Shapiro-Wilk test indicate that the residuals are not normally distributed, so this important assumption was failed.
+
+**AIC Value:**
+
+```{r AIC m1_2, echo=TRUE}
+AICValue = AIC(m1_2)
+AICValue
+```
+
+The also large AIC value seen above also leads us to believe that, even though the goal of higher education was significant, the model did show very poor power prediction. This can be related to the fact that this is a single factor influence only, thus one could expect not that much power from it.
+
+Despite not having normally distributed residuals, the model m1_2 was chosen for illustration as it presented the lowest AIC value. Below is presented a visual summary of the relationship:
+
+```{r summary, fig.width=6, fig.height=4}
+plot(higher_stu, G3, main="Willing Higher Education vs. Final Math Scores", xlab="Wants Higher Education?", ylab="Final Math Scores", xaxt="n")
+axis(1,at=0,labels = "No")
+axis(1,at=1,labels = "Yes")
+abline(m1_2, col="blue")
+text(0.5, 18, expression(hat(y) == 6.80 + 3.81 * (Higher)))
+text(0.5, 16, expression(R^2 == 0.033))
+text(0.5, 14, expression(Radj^2 == 0.031))
+text(0.5, 12, expression(AIC == 2314.98))
+```
+
+Following the same idea, now the models with two or more variables will be tested. For that, a both-directions regression (backwards and forwards) was conducted to let R decide which model would be the best fit. Because of that, we are letting R decide which variables are the best predictors by itself, with no interference of previous knowledge regarding correlation coefficients.
+
+Necessary packages:
+
+```{r echo=TRUE, results='hide',message=FALSE,warning=FALSE}
+library(tidyverse)
+library(caret)
+library(leaps)
+```
+
+Procedure:
+
+```{r message=FALSE, warning=FALSE}
+library(MASS)
+coded_study1 <- stu_per$studytime
+coded_study1[coded_study1==1] <- "0"
+coded_study1[coded_study1==2] <- "0"
+coded_study1[coded_study1==3] <- "5 to 10h"
+coded_study1[coded_study1==4] <- "0"
+full.model <- lm(G3 ~absences+age+Walc+schoolsup+famsize+famsup+freetime+health+higher+internet+paid+Pstatus+romantic+sex+coded_study1, data = stu_per)
+step.model <- stepAIC(full.model, direction = "both", 
+                      trace = TRUE)
+summary(step.model)
+```
+
+Thus, by leaving the option "trace" turned on, the procedure generated four models being the last one with the smallest AIC value (1166.65). Then, comparing the single-predictor model m1_2 and the step-wise model provided, we shall stick to the step-wise model as it presented the best AIC, the best R² value (R² = .1425 or 14.25% of the variance in final math score explained), the best R²adj value (.1156 or 11.56% of the variance in final math scores explained), and was significant at 5% level, F (5, 389) = 5.29, p < .05. The assumptions for the multiple linear model that should now be checked are the multivariate normality, multicollinearity, and homoscedasticity. These tests are presented below.
+
+**Multivariate Normality:**
+
+```{r res step model, echo=TRUE}
+shapiro.test(step.model$residuals)
+```
+
+
+**Multicollinearity:**
+
+```{r multi step model, echo=TRUE, warning=FALSE, message=FALSE}
+library(regclass)
+VIF(step.model)
+```
+
+**Homoscedasticity:**
+
+```{r homo step model, echo=TRUE, warning=FALSE, message=FALSE}
+car::ncvTest(step.model)
+```
+
+The output of these tests seen above suggest that the model does not violate the multicollinearity assumption (all model terms presented VIF value less than 5, the limit for the test) but violated the homoscedasticity assumption (Breusch-Pagan test resulted in χ² = 8.27, p < .05, so the null hypothesis of homogeneous variances is rejected). The assumption of multivariate normality was also not met, as suggested that the Shapiro-Wilk test statistics W = 0.962, p < .05. Now that the assumptions of the model are checked but only partially obeyed, we shall proceed with the interpretation of the model just for analysis purposes.
+
+**Model Coefficients:**
+
+```{r coeff, echo=TRUE}
+round(summary(step.model)$coef,3)
+```
+
+Regarding the variable "studytime", as there were 4 levels, preliminary regression analysis indicated that the level "5 to 10 h" was the only significant for the model, so the step-wise regression was conducted using this level as reference in its respective variable. Moving on, at 95% confidence level, one could do the following inferences regarding the model coefficients seen above:
+
+* **Intercept:**
+
+The expected average final math scores for secondary education students, based on the significant terms of model, will be 16.125 points. Given that not all variables in the model can assume a value of zero, no interpretation should be done.
+
+* **Absences:**
+
+The coefficient of approximately .069 for *"absences"* indicate that for each absence accounted for the student the final math score will increase by .069 units. The significance of this variable alone did not exist, thus one of the variables in the model is influencing *"absences"* to be significant, possibly in an interacted way.
+
+* **Age:**
+
+In terms of *"age"*, the model suggest that older students in the secondary education level tend to score, on average, .637 less points than younger students on the final math score performance.
+
+* **Extra Educational Support:**
+
+The coefficient of approximately -1.562 for *"schoolsupyes"* indicate that students who get extra educational perform on average 1.562 worse in the final math score compared to those who do not get extra educational support. That is a sign that getting extra help may also have a contrary effect and, probably, lead the student to mental exhaustion or to fear bad outcomes.
+
+* **Goal of Higher Education:**
+
+The coefficient of 2.807 associated to *"higheryes"*, the largest in the model, suggest that the fact of student willing to go to high school is the most influential factor among the ones chosen for the model. Therefore, this coefficient means that students willing to pursue a higher education will score, on average, 2.807 points more on the final math score performance compared to those who are not seeking to get higher education.
+
+* **Extra Paid Classes:**
+
+The coefficient of .927 for *"paidyes"* indicate that students who pai fo extra math classes increase, on average, .927 points on the final math score.
+
+* **Relationship Status:**
+
+The coefficient for *"romanticyes"* indicate that student who are involved in a relationship score, on average, 1.129 points less than students who are not in a relationship.
+
+* **Sex:** 
+
+The coefficient of approximately 1.468 for *"sexM"* indicate that male students score, on average, 1.468 points higher than female students in the final math performance score.
+
+* **Study Time:**
+
+As explained, the preliminary regression analysis indicated that the level "5 to 10 h" in the *"studytime"* variable was the only to present statistical significance. Thus, the final model indicated that students who dedicate 5 to 10 hours of study per week tend to score, on average, 1.861 points more on the final math performance score compared to those who spend less or more than this weekly amount of time.
+
+
+## ~End of the Analysis~
+
+</font>

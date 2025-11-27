@@ -1,0 +1,73 @@
+---
+title: "Principal Component Analysis on Olympic Games or Decastar Data Athletes Performance"
+author: "Danilo Zavarize"
+date: "May 2, 2023"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+#### *The data set required for this project, "decathlon.csv" is posted on Canvas. This data set contains information on 41 athletes who participated in decathlon competitions at either Olympic Games or Decastar. The 2^nd^ to 11^th^ variables measure their performances in the 10 events.*
+
+### **ENTERING DATA**
+
+```{r data, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+decathlon <- read.csv("decathlon.csv")
+```
+
+### **LOADING PACKAGES**
+
+```{r packs, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+if (!require("FactoMineR")) install.packages("FactoMineR"); library("FactoMineR")
+if (!require("factoextra")) install.packages("factoextra"); library("factoextra")
+if (!require("corrplot")) install.packages("corrplot"); library("corrplot")
+if (!require("pls")) install.packages("pls"); library("pls")
+if (!require("jtools")) install.packages("jtools"); library("jtools")
+```
+
+### **QUESTIONS/ANSWERS**
+
+1.  Please obtain the correlation matrix for all the 10 numeric variables. Do you see any promises for a PCA? What is your evidence? (Hint: high correlations between certain events/activities). (3 points)
+
+    ```{r q1, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE, fig.height=6, fig.width=7, fig.align='center'}
+    M <- cor(decathlon[2:11])
+    testRes = cor.mtest(M, conf.level = 0.95)
+    corrplot::corrplot(M, method="color", tl.col="black", sig.level = 0.05, insig = "blank", addCoef.col = "black", type="upper", col = COL2('RdBu', 10), p.mat = testRes$p, addrect = 2)
+    ```
+
+    ##### [As observed from the correlogram above, we have 16 bivariate relationships with significant correlation coefficients at the 95% confidence level. Among those, 10 are negative correlations and 6 are positive correlations, with coefficients varying between r = -0.60 and r = 0.62. By having a general threshold of r ≤ -0.30 or r ≥ 0.30 for correlation to be considered for a PCA, we have the following potential bivariate relationships elected: (1) X100m vs. Long.jump, (2) X100m vs. Shot.put, (3) X100m vs. X400m, (4) X100m vs. X110m.Hurdle, (5) Long.jump vs. X400m, (6) Long.jump vs. X110m.Hurdle, (7) Shot.put vs. High.jump, (8) Shot.put vs. Discus, (9) High.jump vs. Discus, (10) X400m vs. X110m.Hurdle, and (11) X110m.Hurdle vs. Discus]{style="color: red"}
+
+2.  Estimate a PCA model and obtain a spree plot. According to this plot, how many components do you think should be retained? Please justify your answer with relevant statistics. (4 points)
+
+    ```{r q2, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE, fig.height=4, fig.width=6, fig.align='center'}
+    res.pca <- PCA(decathlon[2:11],  graph = FALSE)
+    fviz_screeplot(res.pca, addlabels = TRUE, ylim = c(0, 35))
+    ```
+
+    ##### [As observed from the Scree plot, the first two components/dimensions alone explain about 50.1% of the variance of the data set. However, literature standards suggest that a PCA model should be composed of a number of components that lead to at least 80% of explained variance. Thus, for that matter, we shall select the first 5 components because they accumulate up to 81.5% of explained variance.]{style="color: red"}
+
+3.  Obtain the eigen values of your model. Do the eigen values confirm your decision on the number of PC's retained in question 1? If you decide to capture at least 70% of the total variance in the 10 variables, how many PC's do you need to retain? (3 points)
+
+    ```{r q3, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+    get_eig(res.pca)
+    ```
+
+    ##### [Yes. As observed from the eigen values, up to the 5^th^ dimension explains a little over 80% of the total variance in these 10 variables. However, if we decide to capture at least 70% of the total variance, only the first 4 dimensions would be necessary.]{style="color: red"}
+
+4.  Obtain the "Contributions to PC" matrix from your model. What variables make at least 10% contribution to the first PC? Based on these variables, is it possible to argue that these variables measure one single underlying factor (you have to make an argument!)? (2 points)
+
+    ```{r q4, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+    var <- get_pca_var(res.pca)
+    round(head(var$contrib),3)
+    ```
+
+    ##### [As observed from the matrix, in the 1^st^ PC the variables contributing with at least 10% are "X100m", "X110m.Hurdle", "Long.jump", "X400m", "Shot.put", and "High.jump". These variables do measure one single underlying factor if we look from the perspective of the meaning of latent variables - which are underlying constructs that are not directly observable and cannot be measured by one single thing. Thus, given the context of the data, these variables together tend explain athlete's performance better, rather than just one variable would.]{style="color: red"}
+
+5.  Save the PC's to the original data set and estimate a multiple regression model to predict the variable "Points" using the PC's you decide to retain in your answers to questions 1 and 2 as the predictors. What is your coefficient of determination? Are all PC's included as predictors significant? (3 point)
+
+    ```{r q5, echo=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+    model <- lm(Points~X100m+Long.jump+Shot.put+High.jump+X400m+X110m.Hurdle, data=decathlon)
+    summ(model, digits=4, confint = T)
+    ```
+
+    ##### [As observed from the multiple linear model, it was significant at 95% confidence level in estimating the number of points scored by the athletes; F(6, 34) = 52.2, p \< .001, R² = 0.8847. This means that the joint variability of "X100m", "X110m.Hurdle", "Long.jump", "X400m", "Shot.put", and "High.jump" explained about 88.47% of the variability in points scored. However, at this same level of confidence, two of the predictors in the model were not significant: "X100m", t(34) = -1.33, p = . 192, 95% CI: -337.33, 70.14, and "X110m.Hurdle", t(34) = -1.89, p = . 068, 95% CI: -203.85, 7.59.]{style="color: red"}
